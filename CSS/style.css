@@ -1,39 +1,44 @@
+/* :root{
+    --primary-color:;
+} */
 * {
     box-sizing: border-box;
 }
 
 body {
+    background-color: #f2f2f2;
 
-    background-color: #E7E3D4;
 }
 
 header {
-    background-color: bisque;
-    padding: 20px;
+    background-color: #3D3D46;
+    padding: 35px;
     position: sticky;
     top: 0;
     z-index: 1;
-    box-shadow: ;
+    /* box-shadow: ; */
 }
 
 header p {
+    color: #fff;
     margin: 0;
 }
 
 .header-container {
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
 }
 
 .main-container {
-    max-width: 1200px;
+    max-width: 1440px;
+    padding: 20px;
     margin: 0 auto;
     display: flex;
-    gap: 100px;
+    gap: 30px;
 }
 
 .side-content {
-    margin: 60px 0 0 15px;
+    margin-top: 60px;
 }
 
 .search-box {
@@ -54,18 +59,19 @@ header p {
 }
 
 .filter-section {
-    background-color: cadetblue;
-    border-radius: 10px 10px 0 0;
+    background-color: #A5A5A8;
+    border-radius: 10px;
     margin-top: 65px;
-    padding-bottom: 5px;
+    padding-bottom: 20px;
 
 }
 
 .filter-section-heading {
     display: flex;
-    background-color: #fff;
+    background-color: #3D3D46;
+    color: #fff;
     border-radius: 10px 10px 0 0;
-    padding: 10px;
+    padding: 12px;
     justify-content: space-between;
 
 }
@@ -103,7 +109,7 @@ header p {
 }
 
 .skill-element {
-    background-color: rgba(255, 253, 218, 0.966);
+    background-color: #D7BE0A;
     margin: 0 20px;
     padding: 20px;
     border-radius: 10px;
@@ -111,13 +117,15 @@ header p {
 
 .skill-element label {
     margin-left: 25px;
+    color: #000;
 }
 
 .table-container {
     display: flex;
     flex-direction: column;
     align-items: end;
-    margin-top: 110px;
+    margin-top: 90px;
+    flex: 1;
     ;
 }
 
@@ -134,4 +142,88 @@ header p {
     gap: 65px;
     align-self: center;
     margin-top: 80px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+#first-heading {
+    border-top-left-radius: 15px;
+}
+
+#last-heading {
+    border-top-right-radius: 15px;
+}
+
+tr {
+    background-color: #f2f2f2;
+}
+
+td,
+th {
+    border: 3px solid #D7BE0A;
+    text-align: center;
+    vertical-align: center;
+    height: 70px;
+
+
+}
+
+th {
+    background-color: #3D3D46;
+    color: #fff;
+}
+
+tr:hover {
+    background-color: #e84a4a;
+}
+
+
+#action-button-cell button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.pagination-buttons button {
+    border: none;
+    background-color: #E7E3D4;
+    cursor: pointer;
+}
+
+.sort-button {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+
+.data-entry-modal {
+    max-width: 700px;
+    display: none;
+    height: auto;
+    background-color: grey;
+    padding: 20px;
+}
+
+.data-entry-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.data-entry-modal form label {
+    display: block;
+}
+
+.entry-form-row {
+    display: flex;
+    gap: 40px;
+}
+
+#data-entry-submit {
+    align-self: center;
 }
