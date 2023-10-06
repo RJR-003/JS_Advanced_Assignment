@@ -50,6 +50,8 @@ header p {
     padding: 10px;
     border-radius: 10px;
     border: none;
+    box-shadow: 1px 1px 10px #00000077;
+
 }
 
 .search-box>img {
@@ -63,6 +65,8 @@ header p {
     border-radius: 10px;
     margin-top: 65px;
     padding-bottom: 20px;
+    box-shadow: 1px 1px 10px #00000077;
+
 
 }
 
@@ -115,9 +119,19 @@ header p {
     border-radius: 10px;
 }
 
+.skill-element:hover {
+    background-color: #fff894;
+}
+
 .skill-element label {
     margin-left: 25px;
     color: #000;
+}
+
+.skill-element input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+
 }
 
 .table-container {
@@ -147,6 +161,7 @@ header p {
 table {
     width: 100%;
     border-collapse: collapse;
+    box-shadow: 1px 1px 10px #00000085;
 
 }
 
@@ -198,6 +213,10 @@ tr:hover {
 .sort-button {
     cursor: pointer;
     margin-left: 5px;
+}
+
+.sort-button:hover {
+    transform: scale(1.2);
 }
 
 
