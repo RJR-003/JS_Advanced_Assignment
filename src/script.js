@@ -1,125 +1,85 @@
+import { handleTableClick } from "./tableActionButton.js";
+
 const api =
   "https://hrm-app-39bd9-default-rtdb.asia-southeast1.firebasedatabase.app";
 
-let actualData;
+export let actualData;
 
-const temp = document.querySelector(".table-body");
-
-let empArr = actualData?.employee;
-
-dirFlag = 1;
-
+const tableBody = document.querySelector(".table-body");
 
 //general table rendering function
 ///////////////////////////////////////////////
-const tableCreate = (arr) => {
-  arr.forEach(objelem => {
+export const tableCreate = (arr) => {
+  arr.forEach((objelem) => {
     let dep = actualData.department[objelem.department - 1].departmentName;
-    temp.innerHTML += `
+    tableBody.innerHTML += `
     <tr class="data-row">
         <td>${objelem.id}</td>
         <td>${objelem.fullName}</td>
         <td>${objelem.email}</td>
         <td>${dep}</td>
         <td id="action-button-cell">
-            <button class="view-image-icon"><img src="assets/images/view-img.svg"
+            <button  data-emp-id= ${objelem.id}><img class="view-image-icon" src="assets/images/view-img.svg"
                     alt="view button image"></button>
-            <button class="edit-image-icon"><img src="assets/images/edit-img.svg"
+            <button class="edit-image-icon" data-emp-id=${objelem.id}><img class="edit-image-icon" src="assets/images/edit-img.svg"
                     alt="Edit button image"></button>
-            <button class="del-image-icon"><img src="assets/images/del-img.svg"
+            <button class="del-image-icon" data-emp-id=${objelem.id}><img class="del-image-icon" src="assets/images/del-img.svg"
                     alt="Delete button image"></button>
         </td>
     </tr>
-    `
-  })
-}
-
-
-
-// fetch skill form firebase and display it on the filter skill section 
-///////////////////////////////////////////////////////
-const changeSkillState = (skillId) => {
-  console.log(skillId);
-  const temp = document.querySelector(`#${skillId}`);
-  temp.click();
-  checkFilter();
-}
-document.querySelector(".skill-list").addEventListener("click", (e) => {
-  if (e.target.classList.contains("skill-element")) {
-    changeSkillState(e.target.dataset.skillId)
-  }
-})
-
-
-// sort functionality
-//////////////////////////////////////
-const sortFun = () => {
-  let arrToRender = actualData.employee.sort((a, b) => {
-    const name1 = a.fullName.toLowerCase();
-    const name2 = b.fullName.toLowerCase();
-
-    let comparison = 0;
-
-    if (name1 > name2) {
-      comparison = 1 * dirFlag;
-    } else if (name1 < name2) {
-      comparison = -1 * dirFlag;
-    }
-    return comparison;
+    `;
   });
-  temp.innerHTML = "";
-  tableCreate(arrToRender);
-  if (dirFlag == 1) {
-    document.querySelector(".sort-button").src = "../assets/images/down-arrow.svg";
-    dirFlag = -1;
-  }
-  else {
-    dirFlag = 1;
-    document.querySelector(".sort-button").src = "../assets/images/up-arrow.svg";
-  }
-}
-
-
-
-
+};
 
 // fetching data from firebase and display it into the table
 ///////////////////////////////////////////
 const fillentry = (obj) => {
-  const skill = document.querySelector(".skill-list")
+  const skill = document.querySelector(".skill-list");
   tableCreate(obj.employee);
 
   // filter skill button script
-  obj.skill.forEach(objelem => {
-    const skillId = objelem.skill.split(" ").join("")
+  obj.skill.forEach((objelem) => {
+    const skillId = objelem.skill.split(" ").join("");
     skill.innerHTML += ` <div class="skill-element" data-skill-id="${skillId}">
     <input  type="checkbox" id="${skillId}" >
     <label for="${skillId}"> ${objelem.skill}</label><br>
-</div>`
-  })
+</div>`;
+  });
 
+  //fill department in data entry modal
+  const department = document.querySelector("#dep");
+  dep.innerHTML = `<option value="none" selected disabled hidden >select</option>`;
+  obj.department.forEach((objelem) => {
+    dep.innerHTML += ` <option value="${objelem.departmentName}">${objelem.departmentName}</option>`;
+  });
+  // fill role in data entry modal
+  const role = document.querySelector("#role");
+  role.innerHTML = `<option value="none" selected disabled hidden >select</option>`;
+  obj.role.forEach((objelem) => {
+    role.innerHTML += ` <option value="${objelem.role}">${objelem.role}</option>`;
+  });
+  //fill skill in skill selection in data entry modal
+  const skillSelec = document.querySelector("#skill");
+  skillSelec.innerHTML = `<option value="none" selected disabled hidden >choose skill</option>`;
+  obj.skill.forEach((objelem) => {
+    skillSelec.innerHTML += ` <option value="${objelem.skill}">${objelem.skill}</option>`;
+  });
 };
 
+// // display table according to the filtered elements
 
-// display table according to the filtered elements
-
-function checkFilter() {
-  let tempArr = [];
-  let inputs = document.querySelectorAll('.skill-element');
-  console.log(inputs);
-  inputs.forEach((elem) => {
-    if (elem.querySelector(`#${elem.dataset.skillId}`).checked) {
-      tempArr.push(elem.dataset.skillId);
-    }
-  }
-  )
-  console.log(tempArr);
-}
-
-
-
-
-
+// function checkFilter() {
+//   let tempArr = [];
+//   let inputs = document.querySelectorAll('.skill-element');
+//   console.log(inputs);
+//   inputs.forEach((elem) => {
+//     if (elem.querySelector(`#${elem.dataset.skillId}`).checked) {
+//       tempArr.push(elem.dataset.skillId);
+//     }
+//   }
+//   )
+//   console.log(tempArr);
+// }
 
 //fetching data whole data from firebase
 ////////////////////////////////////////////////
@@ -127,8 +87,8 @@ const fetchData = function (fillentry) {
   fetch(api + "/.json")
     .then((res) => res.json())
     .then((data) => {
-      console.log(data, "data");
       actualData = data;
+      console.log(data, "data");
       fillentry(data);
     })
     .catch((err) => console.log(err, "error"));
@@ -136,4 +96,26 @@ const fetchData = function (fillentry) {
 
 fetchData(fillentry);
 
-document.querySelector(".sort-button").onclick = sortFun;
+document.querySelector(".table").addEventListener("click", handleTableClick);
+
+//close data-view-modal
+document.querySelector(".data-view-close").addEventListener("click", () => {
+  document.querySelector(".overlay").style.display = "none";
+  document.querySelector(".data-view-modal").style.display = "none";
+});
+
+//close data-del-modal
+document.querySelector(".cancel-del-button").addEventListener("click", () => {
+  document.querySelector(".overlay").style.display = "none";
+  document.querySelector(".data-del-modal").style.display = "none";
+});
+
+//Add employee function
+document.querySelector(".add-employee-button").addEventListener("click", () => {
+  document.querySelector(".overlay").style.display = "block";
+  document.querySelector(".data-entry-modal").style.display = "block";
+});
+document.querySelector(".data-entry-close").addEventListener("click", () => {
+  document.querySelector(".overlay").style.display = "none";
+  document.querySelector(".data-entry-modal").style.display = "none";
+});

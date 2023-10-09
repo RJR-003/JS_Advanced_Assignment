@@ -20,7 +20,7 @@
     <div class="main-container">
         <div class="side-content">
             <form class="search-box">
-                <input type="text" placeholder="Search Employee">
+                <input class="search-input-box" type="text" placeholder="Search by Name...">
                 <img src="assets/images/search-logo.svg" alt="search icon">
             </form>
             <div class="filter-section">
@@ -39,7 +39,8 @@
             </div>
         </div>
         <div class="table-container">
-            <button><img src="assets/images/add-employee.svg" alt="button for adding new employee"></button>
+            <button class="add-employee-button"><img src="assets/images/add-employee.svg"
+                    alt="button for adding new employee"></button>
             <table class="table">
                 <thead>
                     <tr class="heading-row">
@@ -61,90 +62,163 @@
             </div>
         </div>
 
-    </div>
 
 
 
-
-
-
-    <div class="data-entry-modal">
-        <form>
-            <div class=" form-entry">
-                <label for="name">Full Name</label>
-                <input type="text" id="name">
-            </div>
-            <div class=" form-entry">
-                <label for="email">E-Mail</label>
-                <input type="text" id="email">
-            </div>
-            <div class="entry-form-row">
-                <div class="form-entry">
-                    <label for="doj">Date of Join</label>
-                    <input type="date" id="doj">
+        <div class="data-entry-modal">
+            <img class="data-entry-close" src="assets/images/close-button.svg" alt="x" align="right">
+            <form>
+                <div class=" form-entry">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter full name">
                 </div>
-                <div class="form-entry">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" id="doj">
+                <div class=" form-entry">
+                    <label for="email">E-Mail</label>
+                    <input type="text" id="email" placeholder="Enter E-mail">
                 </div>
+                <div class="entry-form-row">
+                    <div class="form-entry">
+                        <label for="doj">Date of Join</label>
+                        <input type="date" id="doj">
+                    </div>
+                    <div class="form-entry">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="doj">
+                    </div>
 
-            </div>
-            <div class="entry-form-row">
-                <div class="form-entry">
-                    <label for="dep">Department</label>
-                    <select id="dep">
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                    </select>
                 </div>
-                <div class="form-entry">
-                    <label for="role">Role</label>
-                    <select id="role">
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                    </select>
-                </div>
-            </div>
-            <div class="entry-form-row">
-                <div class="form-entry">
-                    <label for="loc">location</label>
-                    <select id="loc">
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                    </select>
-                </div>
-                <div class="form-entry">
-                    <label for="profile">Profile upload</label>
-                    <input type="file" id="myFile" name="filename">
-                </div>
-                <input type="submit" value="submit">
-            </div>
-            <div class="form-skill">
-                <div>
-                    <p>Skills</p>
-                    <div class="added-skills">
-
+                <div class="entry-form-row">
+                    <div class="form-entry">
+                        <label for="dep">Department</label>
+                        <select id="dep">
+                            <option value="sample">sample</option>
+                            <option value="sample">sample</option>
+                            <option value="sample">sample</option>
+                            <option value="sample">sample</option>
+                        </select>
+                    </div>
+                    <div class="form-entry">
+                        <label for="role">Role</label>
+                        <select id="role">
+                            <option value="sample">sample</option>
+                            <option value="sample">sample</option>
+                            <option value="sample">sample</option>
+                            <option value="sample">sample</option>
+                        </select>
                     </div>
                 </div>
-                <select name="skill" id="skill">
-                    <option value="skill1">Skill 1</option>
-                    <option value="skill2">Skill 2</option>
-                </select>
+                <div class="form-location-profile">
 
+                    <div class="form-entry">
+                        <label for="profile">Profile upload</label>
+                        <input class="profile-input" type="file" id="myFile" name="filename">
+                    </div>
+                    <div class="form-entry">
+                        <label for="loc">location</label>
+                        <select id="loc">
+
+                            <option value="none" selected disabled hidden>select</option>
+                            <option value="Trivandrum">Trivandrum</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Bangalore">Bangalore</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-skill">
+                    <div>
+                        <p>Skills</p>
+                        <div class="added-skills">
+                            <div class="each-skill-added">
+                                Skill 1
+                            </div>
+                            <div class="each-skill-added">
+                                Skill 1
+                            </div>
+                        </div>
+                    </div>
+                    <select name="skill" id="skill">
+                        <option value="skill1">Skill 1</option>
+                        <option value="skill2">Skill 2</option>
+                    </select>
+
+                </div>
+                <input id="data-entry-submit" type="submit" value="Add">
+
+            </form>
+        </div>
+
+        <div class="data-view-modal">
+            <img class="data-view-close" src="assets/images/close-button.svg" alt="x" align="right">
+            <figure><img src="" alt="profile-pic"></figure>
+            <div class="data-view-content">
+                <div class="left-view-content">
+                    <div>
+                        <p>Employee ID:</p>
+                        <p>Name: </p>
+                        <p>E-mail: </p>
+                        <p>Date Of Join: </p>
+                        <p>Date of Birth: </p>
+                    </div>
+                    <div>
+                        <p>sample</p>
+                        <p>sample</p>
+                        <p>sample</p>
+                        <p>sample</p>
+                        <p>sample</p>
+                    </div>
+
+                </div>
+                <div class="right-view-content">
+                    <div class="right-content">
+                        <div>
+                            <p>Department:</p>
+                            <p>Role: </p>
+                            <p>Location: </p>
+                        </div>
+                        <div>
+                            <p>sample</p>
+                            <p>sample</p>
+                            <p>sample</p>
+                        </div>
+                    </div>
+                    <div class="view-skill-sec">
+                        <p>Skills</p>
+                        <div class="view-skill-box">
+                            <div class="each-skill-view">Sample</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <input id="data-entry-submit" type="submit" value="Add">
+        </div>
 
-        </form>
+
+        <div class="data-del-modal">
+            <div class="del-conf-msg">
+                <p>Are you sure you want to proceed with the action?</p>
+            </div>
+            <div class="del-conf-buttons">
+                <button class="confirm-button">Confirm</button>
+                <button class="cancel-del-button">Cancel</button>
+            </div>
+
+        </div>
+
+
     </div>
 
 
-    <script src="src/script.js"></script>
+
+    <div class="overlay"></div>
+
+
+
+
+
+    <script type="module" src="src/script.js"></script>
+    <script type="module" src="src/tableActionButton.js"></script>
+    <script type="module" src="src/searchAndSortFun.js"></script>
+    <script type="module" src="src/filterSection.js"></script>
 </body>
 
 </html>
