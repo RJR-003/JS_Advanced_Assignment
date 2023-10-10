@@ -40,7 +40,8 @@ const fillentry = (obj) => {
   // filter skill button script
   obj.skill.forEach((objelem) => {
     const skillId = objelem.skill.split(" ").join("");
-    skill.innerHTML += ` <div class="skill-element" data-skill-id="${skillId}">
+    const skillNum = objelem.skillID;
+    skill.innerHTML += ` <div class="skill-element" data-skill-id="${skillId}" data-skill-num="${skillNum}">
     <input  type="checkbox" id="${skillId}" >
     <label for="${skillId}"> ${objelem.skill}</label><br>
 </div>`;
@@ -66,20 +67,8 @@ const fillentry = (obj) => {
   });
 };
 
-// // display table according to the filtered elements
 
-// function checkFilter() {
-//   let tempArr = [];
-//   let inputs = document.querySelectorAll('.skill-element');
-//   console.log(inputs);
-//   inputs.forEach((elem) => {
-//     if (elem.querySelector(`#${elem.dataset.skillId}`).checked) {
-//       tempArr.push(elem.dataset.skillId);
-//     }
-//   }
-//   )
-//   console.log(tempArr);
-// }
+
 
 //fetching data whole data from firebase
 ////////////////////////////////////////////////

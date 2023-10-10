@@ -1,7 +1,7 @@
 export const handleTableClick = (e) => {
     console.log(e.target.tagName);
     if (e.target.classList.contains("view-image-icon")) {
-        console.log("hi");
+        console.log("view button clicked");
         document.querySelector(".overlay").style.display = "block";
         document.querySelector(".data-view-modal").style.display = "block";
     }
