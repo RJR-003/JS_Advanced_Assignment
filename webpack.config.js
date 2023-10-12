@@ -5,7 +5,7 @@ module.exports = {
     mode: "development",
     devtool: "inline-source-map",
     entry: [
-        "./src/SortFun.ts"
+        './src/filterAndSearchFun', './src/script', './src/SortFun', './src/tableActionButton'
     ],
     output: {
         path: path.resolve(__dirname, './dist'),

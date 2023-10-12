@@ -1,13 +1,29 @@
-import { actualData, tableCreate } from "./script.ts";
-import { FilterArr } from "./filterAndSearchFun.ts";
-const tableBody = document.querySelector(".table-body")! as HTMLTableElement;
+import { actualData, tableCreate } from "./script";
+import { FilterArr } from "./filterAndSearchFun";
+import {
+  overlay,
+  dataViewModal,
+  dataDelModal,
+  tableBody,
+  sortButton,
+  searchBar,
+  skillList,
+  filterSearchBox,
+  departmentEntry,
+  roleEntry,
+  skillSelecEntry,
+  dataViewClose,
+  cancelDelButton,
+  addEmployeeButton,
+  dataEntryClose,
+  dataEntryModal,
+} from "./constants";
 
 let dirFlag = 1;
-const sortButton = document.querySelector(".sort-button")! as HTMLImageElement;
+
 // sort functionality
 //////////////////////////////////////
-const sortFun = () => {
-  console.log(FilterArr);
+export const sortFun = () => {
   let arrayToSort = actualData.employee;
   if (FilterArr.length !== 0) arrayToSort = FilterArr;
 
@@ -54,13 +70,12 @@ const sortFun = () => {
   tableBody.innerHTML = "";
   tableCreate(arrToRender);
   if (dirFlag == 1) {
-    // const sortButton=document.querySelector(".sort-button")! as HTMLImageElement;
     sortButton.src = "../assets/images/down-arrow.svg";
     dirFlag = -1;
   } else {
     dirFlag = 1;
-    // const sortButton=document.querySelector(".sort-button")! as HTMLImageElement;
     sortButton.src = "../assets/images/up-arrow.svg";
   }
 };
-sortButton.onclick = sortFun;
+
+sortButton.addEventListener("click", sortFun);

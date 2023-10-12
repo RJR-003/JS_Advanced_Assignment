@@ -1,15 +1,28 @@
 // fetch skill form firebase and display it on the filter skill section
 ///////////////////////////////////////////////////////
-import { tableCreate, actualData } from "./script.ts";
+import { tableCreate, actualData } from "./script";
+import {
+  overlay,
+  dataViewModal,
+  dataDelModal,
+  tableBody,
+  sortButton,
+  searchBar,
+  skillList,
+  filterSearchBox,
+  departmentEntry,
+  roleEntry,
+  skillSelecEntry,
+  dataViewClose,
+  cancelDelButton,
+  addEmployeeButton,
+  dataEntryClose,
+  dataEntryModal,
+} from "./constants";
 
 export let FilterArr = [];
 
-const tableBody = document.querySelector(".table-body")! as HTMLTableElement;
-const searchBar = document.querySelector(
-  ".search-input-box"
-)! as HTMLInputElement;
-
-const filterTable = () => {
+export const filterTable = () => {
   let inputs = document.querySelectorAll(".skill-element")! as NodeList;
   let checkedFilterArr: string[] = [];
   inputs.forEach((elem) => {
@@ -67,15 +80,12 @@ const filterTable = () => {
   tableCreate(FilterArr);
 };
 
-searchBar.addEventListener("input", filterTable);
-
-const changeSkillState = (skillId: string) => {
+export const changeSkillState = (skillId: string) => {
   console.log(skillId);
   const temp = document.querySelector(`#${skillId}`)! as HTMLInputElement;
   temp.click();
   filterTable();
 };
-const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
 skillList.addEventListener("click", (e: MouseEvent) => {
   const target = e.target as HTMLElement;
   if (target.classList.contains("skill-element")) {
@@ -90,23 +100,17 @@ skillList.addEventListener("click", (e: MouseEvent) => {
   }
 });
 
-const RenderFilterBox = () => {
-  const filterSearchBox = document.querySelector(
-    ".filter-search-box"
-  )! as HTMLInputElement;
+export const RenderFilterBox = () => {
   let value = filterSearchBox.value;
 
   value = value.split(" ").join("").toLowerCase();
-  // console.log(value, "skill serach box value");
 
-  const skill = document.querySelector(".skill-list")! as HTMLDivElement;
-  // console.log(skill.innerHTML, "skill-list")
-  skill.innerHTML = "";
+  skillList.innerHTML = "";
   actualData.skill.forEach((objelem) => {
     const skillId = objelem.skill.split(" ").join("").toLowerCase();
     const skillNum = objelem.skillID;
     if (skillId.includes(value)) {
-      skill.innerHTML += ` <div class="skill-element" data-skill-id="${skillId}" data-skill-num="${skillNum}">
+      skillList.innerHTML += ` <div class="skill-element" data-skill-id="${skillId}" data-skill-num="${skillNum}">
         <input  type="checkbox" id="${skillId}" >
         <label for="${skillId}"> ${objelem.skill}</label><br>
     </div>`;
@@ -114,9 +118,8 @@ const RenderFilterBox = () => {
   });
 };
 
-const clearFilter = () => {
+export const clearFilter = () => {
   const skill = document.querySelectorAll(".skill-element input");
-  // console.log(skill);
   skill.forEach((elem) => {
     const elemChecked = elem as HTMLInputElement;
     if (elemChecked.checked) {
@@ -126,13 +129,11 @@ const clearFilter = () => {
   filterTable();
 };
 
-const filterSearchBox = document.querySelector(
-  ".filter-search-box"
-)! as HTMLInputElement;
-
 filterSearchBox.addEventListener("input", RenderFilterBox);
 const clearFilterButton = document.querySelector(
   ".clear-filter-button"
 )! as HTMLImageElement;
 
 clearFilterButton.addEventListener("click", clearFilter);
+
+searchBar.addEventListener("input", filterTable);
