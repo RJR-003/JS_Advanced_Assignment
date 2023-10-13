@@ -1,5 +1,5 @@
-import { handleTableClick } from "./tableActionButton.js";
-import { employee, fullData } from "./type.js";
+import { handleTableClick } from "./tableActionButton";
+import { employee, fullData } from "./type";
 import {
   api,
   overlay,
@@ -18,7 +18,11 @@ import {
   dataEntryModal,
   searchBar,
   filterSearchBox,
-} from "./constants.js";
+  clearFilterButton,
+  sortButton,
+} from "./constants";
+import { RenderFilterBox, clearFilter } from "./filterAndSearchFun";
+import { sortFun } from "./SortFun";
 
 export let actualData: fullData;
 
@@ -87,6 +91,7 @@ const fetchData = function (fillentry: Function): void {
     .then((data) => {
       actualData = data;
       fillentry(data);
+      sortFun();
     })
     .catch((err) => console.log(err, "error"));
 };
@@ -120,3 +125,61 @@ dataEntryClose.addEventListener("click", () => {
 });
 
 //filterAndSearch functionality
+export let FilterArr: employee[] = [];
+
+export const filterTable = () => {
+  let inputs = document.querySelectorAll(".skill-element")! as NodeList;
+  let checkedFilterArr: string[] = [];
+  inputs.forEach((elem) => {
+    const element = elem as HTMLInputElement;
+    const trial = element.querySelector(
+      `#${element.dataset.skillId}`
+    )! as HTMLInputElement;
+    if (trial.checked) {
+      const dataset = element.dataset.skillNum as string;
+      checkedFilterArr.push(dataset);
+    }
+  });
+
+  const searchvalue = searchBar.value.toLowerCase();
+
+  FilterArr = actualData.employee;
+
+  if (searchBar.value !== "") {
+    FilterArr = FilterArr.filter((elem: employee) =>
+      elem.fullName.trim().toLowerCase().includes(searchvalue)
+    );
+  }
+
+  if (checkedFilterArr.length !== 0) {
+    FilterArr = FilterArr.filter((elem: employee) =>
+      checkedFilterArr.every((checkElem) =>
+        elem.skills.includes(Number(checkElem))
+      )
+    );
+  }
+  tableBody.innerHTML = "";
+  tableCreate(FilterArr);
+};
+
+const changeSkillState = (skillId: string) => {
+  const temp = document.querySelector(`#${skillId}`)! as HTMLInputElement;
+  temp.click();
+  filterTable();
+};
+skillList.addEventListener("click", (e: MouseEvent) => {
+  const target = e.target as HTMLElement;
+  if (target.classList.contains("skill-element")) {
+    const dataset = target.dataset.skillId as string;
+    changeSkillState(dataset);
+  }
+
+  if (target.tagName === "INPUT" || target.tagName === "LABEL") {
+    const targetClosest = target.closest("div")! as HTMLDivElement;
+    const dataset = targetClosest.dataset.skillId as string;
+    changeSkillState(dataset);
+  }
+});
+sortButton.addEventListener("click", sortFun);
+
+searchBar.addEventListener("input", filterTable);

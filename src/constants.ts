@@ -45,3 +45,6 @@ export const dataEntryModal = document.querySelector(
   ".data-entry-modal"
 )! as HTMLDivElement;
 export const table = document.querySelector(".table")! as HTMLTableElement;
+export const clearFilterButton = document.querySelector(
+  ".clear-filter-button"
+)! as HTMLImageElement;

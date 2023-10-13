@@ -1,4 +1,4 @@
-import { overlay, dataViewModal, dataDelModal } from "./constants.js";
+import { overlay, dataViewModal, dataDelModal } from "./constants";
 
 export const handleTableClick = (e: MouseEvent) => {
   const target = e.target as HTMLTableElement;

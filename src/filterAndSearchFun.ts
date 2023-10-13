@@ -1,70 +1,7 @@
 // fetch skill form firebase and display it on the filter skill section
 ///////////////////////////////////////////////////////
-import { tableCreate, actualData } from "./script.js";
-import { employee } from "./type.js";
-import {
-  tableBody,
-  searchBar,
-  skillList,
-  filterSearchBox,
-} from "./constants.js";
-
-export let FilterArr = [];
-
-export const filterTable = () => {
-  let inputs = document.querySelectorAll(".skill-element")! as NodeList;
-  let checkedFilterArr: string[] = [];
-  inputs.forEach((elem) => {
-    const element = elem as HTMLInputElement;
-    const trial = element.querySelector(
-      `#${element.dataset.skillId}`
-    )! as HTMLInputElement;
-    if (trial.checked) {
-      const dataset = element.dataset.skillNum as string;
-      checkedFilterArr.push(dataset);
-    }
-  });
-
-  const searchvalue = searchBar.value.toLowerCase();
-
-  // let FilterArr = actualData.employee;
-
-  if (searchBar.value !== "") {
-    FilterArr = FilterArr.filter((elem: employee) =>
-      elem.fullName.trim().toLowerCase().includes(searchvalue)
-    );
-  }
-
-  if (checkedFilterArr.length !== 0) {
-    FilterArr = FilterArr.filter((elem: employee) =>
-      checkedFilterArr.every((checkElem) =>
-        elem.skills.includes(Number(checkElem))
-      )
-    );
-  }
-  tableBody.innerHTML = "";
-  tableCreate(FilterArr);
-};
-
-export const changeSkillState = (skillId: string) => {
-  console.log(skillId);
-  const temp = document.querySelector(`#${skillId}`)! as HTMLInputElement;
-  temp.click();
-  filterTable();
-};
-skillList.addEventListener("click", (e: MouseEvent) => {
-  const target = e.target as HTMLElement;
-  if (target.classList.contains("skill-element")) {
-    const dataset = target.dataset.skillId as string;
-    changeSkillState(dataset);
-  }
-
-  if (target.tagName === "INPUT" || target.tagName === "LABEL") {
-    const targetClosest = target.closest("div")! as HTMLDivElement;
-    const dataset = targetClosest.dataset.skillId as string;
-    changeSkillState(dataset);
-  }
-});
+import { actualData, filterTable } from "./script";
+import { skillList, filterSearchBox, clearFilterButton } from "./constants";
 
 export const RenderFilterBox = () => {
   let value = filterSearchBox.value;
@@ -96,10 +33,5 @@ export const clearFilter = () => {
 };
 
 filterSearchBox.addEventListener("input", RenderFilterBox);
-const clearFilterButton = document.querySelector(
-  ".clear-filter-button"
-)! as HTMLImageElement;
 
 clearFilterButton.addEventListener("click", clearFilter);
-
-searchBar.addEventListener("input", filterTable);

@@ -1,6 +1,6 @@
-import { actualData, tableCreate } from "./script.js";
-import { FilterArr } from "./filterAndSearchFun.js";
-import { tableBody, sortButton } from "./constants.js";
+import { actualData, tableCreate } from "./script";
+import { FilterArr } from "./script";
+import { tableBody, sortButton } from "./constants";
 
 let dirFlag = 1;
 
@@ -33,5 +33,3 @@ export const sortFun = () => {
     sortButton.src = "../assets/images/up-arrow.svg";
   }
 };
-
-sortButton.addEventListener("click", sortFun);
