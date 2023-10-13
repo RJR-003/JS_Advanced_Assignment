@@ -1,3 +1,5 @@
+export const api =
+  "https://hrm-app-39bd9-default-rtdb.asia-southeast1.firebasedatabase.app";
 export const overlay = document.querySelector(".overlay")! as HTMLDivElement;
 export const dataViewModal = document.querySelector(
   ".data-view-modal"
@@ -42,3 +44,4 @@ export const dataEntryClose = document.querySelector(
 export const dataEntryModal = document.querySelector(
   ".data-entry-modal"
 )! as HTMLDivElement;
+export const table = document.querySelector(".table")! as HTMLTableElement;

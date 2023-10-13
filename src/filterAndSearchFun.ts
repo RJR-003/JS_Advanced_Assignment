@@ -1,24 +1,13 @@
 // fetch skill form firebase and display it on the filter skill section
 ///////////////////////////////////////////////////////
-import { tableCreate, actualData } from "./script";
+import { tableCreate, actualData } from "./script.js";
+import { employee } from "./type.js";
 import {
-  overlay,
-  dataViewModal,
-  dataDelModal,
   tableBody,
-  sortButton,
   searchBar,
   skillList,
   filterSearchBox,
-  departmentEntry,
-  roleEntry,
-  skillSelecEntry,
-  dataViewClose,
-  cancelDelButton,
-  addEmployeeButton,
-  dataEntryClose,
-  dataEntryModal,
-} from "./constants";
+} from "./constants.js";
 
 export let FilterArr = [];
 
@@ -38,42 +27,19 @@ export const filterTable = () => {
 
   const searchvalue = searchBar.value.toLowerCase();
 
-  let FilterArr = actualData.employee;
+  // let FilterArr = actualData.employee;
 
   if (searchBar.value !== "") {
-    FilterArr = FilterArr.filter(
-      (elem: {
-        id: number;
-        fullName: string;
-        email: string;
-        dateOfJoining: string;
-        dateOfBirth: string;
-        department: number;
-        role: number;
-        skills: number[];
-        workLocation: string;
-        ContactNum: string;
-      }) => elem.fullName.trim().toLowerCase().includes(searchvalue)
+    FilterArr = FilterArr.filter((elem: employee) =>
+      elem.fullName.trim().toLowerCase().includes(searchvalue)
     );
   }
 
   if (checkedFilterArr.length !== 0) {
-    FilterArr = FilterArr.filter(
-      (elem: {
-        id: number;
-        fullName: string;
-        email: string;
-        dateOfJoining: string;
-        dateOfBirth: string;
-        department: number;
-        role: number;
-        skills: number[];
-        workLocation: string;
-        ContactNum: string;
-      }) =>
-        checkedFilterArr.every((checkElem) =>
-          elem.skills.includes(Number(checkElem))
-        )
+    FilterArr = FilterArr.filter((elem: employee) =>
+      checkedFilterArr.every((checkElem) =>
+        elem.skills.includes(Number(checkElem))
+      )
     );
   }
   tableBody.innerHTML = "";

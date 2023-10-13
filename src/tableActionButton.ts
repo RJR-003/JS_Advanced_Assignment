@@ -1,21 +1,4 @@
-import {
-  overlay,
-  dataViewModal,
-  dataDelModal,
-  tableBody,
-  sortButton,
-  searchBar,
-  skillList,
-  filterSearchBox,
-  departmentEntry,
-  roleEntry,
-  skillSelecEntry,
-  dataViewClose,
-  cancelDelButton,
-  addEmployeeButton,
-  dataEntryClose,
-  dataEntryModal,
-} from "./constants";
+import { overlay, dataViewModal, dataDelModal } from "./constants.js";
 
 export const handleTableClick = (e: MouseEvent) => {
   const target = e.target as HTMLTableElement;

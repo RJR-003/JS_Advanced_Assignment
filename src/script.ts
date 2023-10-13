@@ -1,13 +1,13 @@
-import { handleTableClick } from "./tableActionButton";
+import { handleTableClick } from "./tableActionButton.js";
+import { employee, fullData } from "./type.js";
 import {
+  api,
   overlay,
+  table,
   dataViewModal,
   dataDelModal,
   tableBody,
-  sortButton,
-  searchBar,
   skillList,
-  filterSearchBox,
   departmentEntry,
   roleEntry,
   skillSelecEntry,
@@ -16,47 +16,15 @@ import {
   addEmployeeButton,
   dataEntryClose,
   dataEntryModal,
-} from "./constants";
+  searchBar,
+  filterSearchBox,
+} from "./constants.js";
 
-const api =
-  "https://hrm-app-39bd9-default-rtdb.asia-southeast1.firebasedatabase.app";
-
-const table = document.querySelector(".table")! as HTMLTableElement;
-
-export let actualData: {
-  employee: {
-    id: number;
-    fullName: string;
-    email: string;
-    dateOfJoining: string;
-    dateOfBirth: string;
-    department: number;
-    role: number;
-    skills: number[];
-    workLocation: string;
-    ContactNum: string;
-  }[];
-  department: { departmentID: number; departmentName: string }[];
-  role: { roleID: number; role: string }[];
-  skill: { skillID: number; skill: string }[];
-};
+export let actualData: fullData;
 
 //general table rendering function
 ///////////////////////////////////////////////
-export const tableCreate = (
-  arr: {
-    id: number;
-    fullName: string;
-    email: string;
-    dateOfJoining: string;
-    dateOfBirth: string;
-    department: number;
-    role: number;
-    skills: number[];
-    workLocation: string;
-    ContactNum: string;
-  }[]
-) => {
+export const tableCreate = (arr: employee[]) => {
   arr.forEach((objelem) => {
     let dep: string =
       actualData.department[objelem.department - 1].departmentName;
@@ -81,23 +49,7 @@ export const tableCreate = (
 
 // fetching data from firebase and display it into the table
 ///////////////////////////////////////////
-const fillentry = (obj: {
-  employee: {
-    id: number;
-    fullName: string;
-    email: string;
-    dateOfJoining: string;
-    dateOfBirth: string;
-    department: number;
-    role: number;
-    skills: number[];
-    workLocation: string;
-    ContactNum: string;
-  }[];
-  department: { departmentID: number; departmentName: string }[];
-  role: { roleID: number; role: string }[];
-  skill: { skillID: number; skill: string }[];
-}) => {
+const fillentry = (obj: fullData) => {
   tableCreate(obj.employee);
 
   // filter skill button script
@@ -166,3 +118,5 @@ dataEntryClose.addEventListener("click", () => {
   overlay.style.display = "none";
   dataEntryModal.style.display = "none";
 });
+
+//filterAndSearch functionality
