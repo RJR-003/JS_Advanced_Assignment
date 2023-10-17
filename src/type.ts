@@ -8,6 +8,7 @@ export type employee = {
   role: number;
   skills: number[];
   workLocation: string;
+  imageSrc: string;
 };
 
 export type department = {

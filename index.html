@@ -68,23 +68,27 @@
 
         <div class="data-entry-modal">
             <img class="data-entry-close" src="assets/images/close-button.svg" alt="x" align="right">
-            <form>
+            <form class="data-entry-form">
                 <div class=" form-entry">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" placeholder="Enter full name">
+                    <p class="warning-msg data-entry-name-alert">More than 2 letters required</p>
                 </div>
                 <div class=" form-entry">
                     <label for="email">E-Mail</label>
-                    <input type="text" id="email" placeholder="Enter E-mail">
+                    <input type="email" id="email" placeholder="Enter E-mail" required>
+                    <p class="warning-msg data-entry-email-alert">enter a valid email</p>
                 </div>
                 <div class="entry-form-row">
                     <div class="form-entry">
                         <label for="doj">Date of Join</label>
                         <input type="date" id="doj">
+                        <p class="warning-msg data-entry-doj-alert">Choose a date</p>
                     </div>
                     <div class="form-entry">
                         <label for="dob">Date of Birth</label>
-                        <input type="date" id="doj">
+                        <input type="date" id="dob">
+                        <p class="warning-msg data-entry-dob-alert">Choose a date</p>
                     </div>
 
                 </div>
@@ -92,27 +96,25 @@
                     <div class="form-entry">
                         <label for="dep">Department</label>
                         <select id="dep">
-                            <option value="sample">sample</option>
-                            <option value="sample">sample</option>
-                            <option value="sample">sample</option>
-                            <option value="sample">sample</option>
+
+
                         </select>
+                        <p class="warning-msg data-entry-dep-alert">select a department</p>
                     </div>
                     <div class="form-entry">
                         <label for="role">Role</label>
                         <select id="role">
-                            <option value="sample">sample</option>
-                            <option value="sample">sample</option>
-                            <option value="sample">sample</option>
-                            <option value="sample">sample</option>
+
+
                         </select>
+                        <p class="warning-msg data-entry-role-alert">select a role</p>
                     </div>
                 </div>
                 <div class="form-location-profile">
 
                     <div class="form-entry">
                         <label for="profile">Profile upload</label>
-                        <input class="profile-input" type="file" id="myFile" name="filename">
+                        <input class="profile-input" type="file" id="profile" name="filename" accept="image/*">
                     </div>
                     <div class="form-entry">
                         <label for="loc">location</label>
@@ -124,24 +126,25 @@
                             <option value="Hyderabad">Hyderabad</option>
                             <option value="Bangalore">Bangalore</option>
                         </select>
+                        <p class="warning-msg data-entry-loc-alert">select a location</p>
                     </div>
                 </div>
                 <div class="form-skill">
                     <div>
                         <p>Skills</p>
                         <div class="added-skills">
-                            <div class="each-skill-added">
+                            <!-- <div class="each-skill-added">
                                 Skill 1
                             </div>
                             <div class="each-skill-added">
                                 Skill 1
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <select name="skill" id="skill">
-                        <option value="skill1">Skill 1</option>
-                        <option value="skill2">Skill 2</option>
+
                     </select>
+                    <p class="warning-msg-last data-entry-skill-alert">choose atleast one</p>
 
                 </div>
                 <input id="data-entry-submit" type="submit" value="Add">
@@ -151,42 +154,42 @@
 
         <div class="data-view-modal">
             <img class="data-view-close" src="assets/images/close-button.svg" alt="x" align="right">
-            <figure><img src="" alt="profile-pic"></figure>
+            <figure><img class="img" src="assets/images/profile.png" alt="profile-pic"></figure>
             <div class="data-view-content">
                 <div class="left-view-content">
                     <div>
-                        <p>Employee ID:</p>
-                        <p>Name: </p>
-                        <p>E-mail: </p>
-                        <p>Date Of Join: </p>
-                        <p>Date of Birth: </p>
+                        <p class="view-labels">Employee ID:</p>
+                        <p class="view-labels">Name: </p>
+                        <p class="view-labels">E-mail: </p>
+                        <p class="view-labels">Date Of Join: </p>
+                        <p class="view-labels">Date of Birth: </p>
                     </div>
                     <div>
-                        <p>sample</p>
-                        <p>sample</p>
-                        <p>sample</p>
-                        <p>sample</p>
-                        <p>sample</p>
+                        <p id="empIdView"></p>
+                        <p id="nameView"></p>
+                        <p id="emailView"></p>
+                        <p id="dojView"></p>
+                        <p id="dobView"></p>
                     </div>
 
                 </div>
                 <div class="right-view-content">
                     <div class="right-content">
                         <div>
-                            <p>Department:</p>
-                            <p>Role: </p>
-                            <p>Location: </p>
+                            <p class="view-labels">Department:</p>
+                            <p class="view-labels">Role: </p>
+                            <p class="view-labels">Location: </p>
                         </div>
                         <div>
-                            <p>sample</p>
-                            <p>sample</p>
-                            <p>sample</p>
+                            <p id="depView"></p>
+                            <p id="roleView"></p>
+                            <p id="locView"></p>
                         </div>
                     </div>
                     <div class="view-skill-sec">
-                        <p>Skills</p>
+                        <p class="view-labels">Skills</p>
                         <div class="view-skill-box">
-                            <div class="each-skill-view">Sample</div>
+                            <!-- <div class="each-skill-view">Sample</div> -->
                         </div>
                     </div>
                 </div>
@@ -208,18 +211,14 @@
 
     </div>
 
+
+
     <div class="overlay"></div>
+
+
+
 
     <script type="module" src="dist/bundle.js"></script>
 </body>
 
 </html>
-
-
-
-<!-- <script type="module" src="dist/constants.js"></script>
-    <script type="module" src="dist/type.js"></script>
-    <script type="module" src="dist/script.js"></script>
-    <script type="module" src="dist/filterAndSearchFun.js"></script>
-    <script type="module" src="dist/SortFun.js"></script>
-    <script type="module" src="dist/tableActionButton.js"></script> -->

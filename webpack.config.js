@@ -5,7 +5,8 @@ module.exports = {
     devtool: "inline-source-map",
     entry: [
         './src/filterAndSearchFun', './src/script', './src/SortFun', './src/tableActionButton',
-        './src/constants', './src/type.ts'
+        './src/constants', './src/type', './src/addUpdateEmployee', './src/deleteEmployee',
+        './src/updateEmployee', './src/viewEmployee'
     ],
     output: {
         path: path.resolve(__dirname, './dist'),

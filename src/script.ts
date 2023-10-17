@@ -20,11 +20,25 @@ import {
   filterSearchBox,
   clearFilterButton,
   sortButton,
+  dataEntryForm,
+  dataEntrySubmit,
 } from "./constants";
 import { RenderFilterBox, clearFilter } from "./filterAndSearchFun";
 import { sortFun } from "./SortFun";
-
 export let actualData: fullData;
+export let originalData: fullData;
+export let skillNameArr: string[] = []; //string array
+export let skillName: string[];
+export const changeSkillNameArr = (elem: string[]) => {
+  skillNameArr = elem;
+};
+export const changeSkillName = (elem: string[]) => {
+  skillName = elem;
+};
+const skillInput = document.querySelector("#skill")! as HTMLSelectElement;
+const Fulltable = document.querySelector(".table")! as HTMLTableElement;
+const formSkill = document.querySelector(".form-skill")! as HTMLDivElement;
+const addedSkills = document.querySelector(".added-skills")! as HTMLDivElement;
 
 //general table rendering function
 ///////////////////////////////////////////////
@@ -39,11 +53,11 @@ export const tableCreate = (arr: employee[]) => {
         <td>${objelem.email}</td>
         <td>${dep}</td>
         <td id="action-button-cell">
-            <button  data-emp-id= ${objelem.id}><img class="view-image-icon" src="assets/images/view-img.svg"
+            <button  data-emp-id= ${objelem.id}><img data-emp-id= ${objelem.id} class="view-image-icon" src="assets/images/view-img.svg"
                     alt="view button image"></button>
-            <button class="edit-image-icon" data-emp-id=${objelem.id}><img class="edit-image-icon" src="assets/images/edit-img.svg"
+            <button class="edit-image-icon" data-emp-id=${objelem.id}><img data-emp-id= ${objelem.id} class="edit-image-icon" src="assets/images/edit-img.svg"
                     alt="Edit button image"></button>
-            <button class="del-image-icon" data-emp-id=${objelem.id}><img class="del-image-icon" src="assets/images/del-img.svg"
+            <button class="del-image-icon" data-emp-id=${objelem.id}><img data-emp-id= ${objelem.id} class="del-image-icon" src="assets/images/del-img.svg"
                     alt="Delete button image"></button>
         </td>
     </tr>
@@ -53,7 +67,7 @@ export const tableCreate = (arr: employee[]) => {
 
 // fetching data from firebase and display it into the table
 ///////////////////////////////////////////
-const fillentry = (obj: fullData) => {
+export const fillentry = (obj: fullData) => {
   tableCreate(obj.employee);
 
   // filter skill button script
@@ -79,16 +93,18 @@ const fillentry = (obj: fullData) => {
   //fill skill in skill selection in data entry modal
   skillSelecEntry.innerHTML = `<option value="none" selected disabled hidden >choose skill</option>`;
   obj.skill.forEach((objelem) => {
-    skillSelecEntry.innerHTML += ` <option value="${objelem.skill}">${objelem.skill}</option>`;
+    skillSelecEntry.innerHTML += ` <option class="skill-options" id="${objelem.skill}" value="${objelem.skill}">${objelem.skill}</option>`;
   });
 };
 
 //fetching data whole data from firebase
 ////////////////////////////////////////////////
-const fetchData = function (fillentry: Function): void {
+export const fetchData = function (fillentry: Function): void {
   fetch(api + "/.json")
     .then((res) => res.json())
     .then((data) => {
+      data.employee = data.employee.filter(Boolean);
+      originalData = structuredClone(data);
       actualData = data;
       fillentry(data);
       sortFun();
@@ -115,11 +131,15 @@ cancelDelButton.addEventListener("click", () => {
 //Add employee function
 
 addEmployeeButton.addEventListener("click", () => {
+  dataEntryForm.reset();
+  addedSkills.innerHTML = "";
+  dataEntrySubmit.value = "Add";
   overlay.style.display = "block";
   dataEntryModal.style.display = "block";
 });
 
 dataEntryClose.addEventListener("click", () => {
+  dataEntryForm.reset();
   overlay.style.display = "none";
   dataEntryModal.style.display = "none";
 });
@@ -183,3 +203,8 @@ skillList.addEventListener("click", (e: MouseEvent) => {
 sortButton.addEventListener("click", sortFun);
 
 searchBar.addEventListener("input", filterTable);
+
+//setting limit to date of birth
+let today = new Date().toJSON().slice(0, 10);
+const dateInput = document.querySelector("#dob")! as HTMLInputElement;
+dateInput.setAttribute("max", today);

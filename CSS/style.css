@@ -254,7 +254,8 @@ th {
 } */
 
 tr:hover {
-    background-color: #f86969;
+    background-color: #fff894;
+    /* background-color: #f86969; */
     /* background-color: #e84a4a; */
 }
 
@@ -362,6 +363,7 @@ tr:hover {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
 }
 
 .data-entry-modal form select {
@@ -448,8 +450,9 @@ tr:hover {
 }
 
 .data-view-modal>figure {
-    width: 150px;
+    width: fit-content;
     height: auto;
+    margin-left: 0;
 }
 
 .data-view-modal>img {
@@ -552,4 +555,49 @@ tr:hover {
 
 .delete-button:hover {
     background-color: #aa3333;
+}
+
+.warning-msg {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+
+}
+
+.warning-msg-last {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    bottom: 65px;
+    left: 35px;
+}
+
+.data-entry-name-alert,
+.data-entry-email-alert,
+.data-entry-doj-alert,
+.data-entry-dob-alert,
+.data-entry-dep-alert,
+.data-entry-role-alert,
+.data-entry-loc-alert,
+.data-entry-skill-alert {
+    display: none;
+}
+
+.view-labels {
+    width: max-content;
+    font-weight: 600;
+}
+
+.each-skill-view {
+    margin: 2px;
+}
+
+.view-skill-box {
+    overflow-y: scroll;
+}
+
+.added-skills {
+    overflow-y: scroll;
 }

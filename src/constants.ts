@@ -48,3 +48,49 @@ export const table = document.querySelector(".table")! as HTMLTableElement;
 export const clearFilterButton = document.querySelector(
   ".clear-filter-button"
 )! as HTMLImageElement;
+
+export const name = document.querySelector("#name")! as HTMLInputElement;
+export const email = document.querySelector("#email")! as HTMLInputElement;
+export const dateOfJoin = document.querySelector("#doj")! as HTMLInputElement;
+export const dataOfBirth = document.querySelector("#dob")! as HTMLInputElement;
+export const depInput = document.querySelector("#dep")! as HTMLSelectElement;
+export const roleInput = document.querySelector("#role")! as HTMLSelectElement;
+export const locInput = document.querySelector("#loc")! as HTMLSelectElement;
+export const skillInput = document.querySelector(
+  "#skill"
+)! as HTMLSelectElement;
+export const Fulltable = document.querySelector(".table")! as HTMLTableElement;
+export const formSkill = document.querySelector(
+  ".form-skill"
+)! as HTMLDivElement;
+
+export const addedSkills = document.querySelector(
+  ".added-skills"
+)! as HTMLDivElement;
+export const dataEntryNameAlert = document.querySelector(
+  ".data-entry-name-alert"
+)! as HTMLDivElement;
+export const dataEntryDojAlert = document.querySelector(
+  ".data-entry-doj-alert "
+)! as HTMLDivElement;
+export const dataEntryDobAlert = document.querySelector(
+  ".data-entry-dob-alert"
+)! as HTMLDivElement;
+export const dataEntryRoleAlert = document.querySelector(
+  ".data-entry-role-alert"
+)! as HTMLDivElement;
+export const dataEntryDepAlert = document.querySelector(
+  ".data-entry-dep-alert"
+)! as HTMLDivElement;
+export const dataEntryLocAlert = document.querySelector(
+  ".data-entry-loc-alert"
+)! as HTMLDivElement;
+export const dataEntrySkillAlert = document.querySelector(
+  ".data-entry-skill-alert"
+)! as HTMLDivElement;
+export const dataEntrySubmit = document.querySelector(
+  "#data-entry-submit"
+)! as HTMLInputElement;
+export const dataEntryForm = document.querySelector(
+  ".data-entry-form"
+)! as HTMLFormElement;
