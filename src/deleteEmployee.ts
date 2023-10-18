@@ -1,4 +1,10 @@
-import { originalData, fetchData, fillentry, firebaseData } from "./script";
+import {
+  originalData,
+  fetchData,
+  fillentry,
+  firebaseData,
+  toast,
+} from "./script";
 import { api, skillList, overlay, dataDelModal } from "./constants";
 const confirmButton = document.querySelector(
   ".confirm-button"
@@ -9,6 +15,7 @@ const delData = (index: number) => {
   })
     .then((res) => {
       console.log(res, "successfully deleted!!!");
+      toast(false, "Succesfully deleted the employee");
       return res.json();
     })
     .then((data) => {
@@ -18,7 +25,10 @@ const delData = (index: number) => {
       console.log(data, "data");
     })
 
-    .catch((err) => console.log(err, "error while deleting employee"));
+    .catch((err) => {
+      console.log(err, "error while deleting employee");
+      toast(true, "Error while deleting employee");
+    });
 };
 
 export const delEmp = (id: number) => {

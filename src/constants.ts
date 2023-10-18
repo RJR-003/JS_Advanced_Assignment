@@ -97,3 +97,6 @@ export const dataEntryForm = document.querySelector(
 export const dataEntryEmailAlert = document.querySelector(
   ".data-entry-email-alert"
 )! as HTMLDivElement;
+export const materialSymbolsOutlined = document.querySelector(
+  ".material-symbols-outlined "
+)! as HTMLSpanElement;

@@ -20,6 +20,7 @@ import {
   sortButton,
   dataEntryForm,
   dataEntrySubmit,
+  materialSymbolsOutlined,
 } from "./constants";
 import { RenderFilterBox, clearFilter } from "./filterAndSearchFun";
 import { sortFun } from "./SortFun";
@@ -38,9 +39,31 @@ const skillInput = document.querySelector("#skill")! as HTMLSelectElement;
 const Fulltable = document.querySelector(".table")! as HTMLTableElement;
 const formSkill = document.querySelector(".form-skill")! as HTMLDivElement;
 const addedSkills = document.querySelector(".added-skills")! as HTMLDivElement;
+const toastMsg = document.querySelector(".toast-msg")! as HTMLParagraphElement;
+const toastDiv = document.querySelector(".toast")! as HTMLDivElement;
 
 //general table rendering function
 ///////////////////////////////////////////////
+
+export const toast = (type: boolean, msg: string) => {
+  if (type) {
+    toastMsg.innerHTML = msg;
+    materialSymbolsOutlined.innerHTML = "error";
+    toastDiv.style.background =
+      "linear-gradient(111.4deg, rgb(246, 4, 26) 0.4%, rgb(251, 139, 34) 100.2%)";
+    toastDiv.style.transform = "translateY(170%)";
+  } else {
+    toastMsg.innerHTML = msg;
+    toastDiv.style.background =
+      "linear-gradient(179.1deg, rgb(43, 170, 96) 2.3%, rgb(129, 204, 104) 98.3%)";
+    materialSymbolsOutlined.innerHTML = "done";
+    toastDiv.style.transform = "translateY(170%)";
+  }
+  setTimeout(() => {
+    toastDiv.style.transform = "translateY(0)";
+  }, 3000);
+};
+
 export const tableCreate = (arr: employee[]) => {
   arr.forEach((objelem) => {
     let dep: string =

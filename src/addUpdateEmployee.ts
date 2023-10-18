@@ -5,6 +5,7 @@ import {
   originalData,
   skillNameArr,
   changeSkillNameArr,
+  toast,
 } from "./script";
 import { updateIndex, idOfEmp } from "./updateEmployee";
 import { skillName } from "./script";
@@ -47,7 +48,9 @@ const putData = (
   role: string,
   loc: string,
   skill: number[],
-  img: string
+  img: string,
+  errMsg: string,
+  succMsg: string
 ) => {
   fetch(api + "/employee/" + index + ".json", {
     method: "PUT",
@@ -66,6 +69,7 @@ const putData = (
   })
     .then((res) => {
       console.log(res, "successfully added!!!");
+      toast(false, succMsg);
       return res.json();
     })
     .then((data) => {
@@ -77,7 +81,10 @@ const putData = (
       console.log(data, "data");
     })
 
-    .catch((err) => console.log(err, "error while performing the action"));
+    .catch((err) => {
+      console.log(err, "error while performing the action");
+      toast(true, errMsg);
+    });
 };
 
 //converts skillname to skill id array
@@ -198,6 +205,8 @@ const handleSubmitClick = async (e: SubmitEvent) => {
           1;
       } else employeeID = 1001;
 
+      let errMsg = "Error while adding employee";
+      let succMsg = "Succesfully added employee";
       putData(
         entryIndex,
         employeeID,
@@ -209,7 +218,9 @@ const handleSubmitClick = async (e: SubmitEvent) => {
         roleInputVal,
         locInputVal,
         skillInputVal,
-        base64String
+        base64String,
+        errMsg,
+        succMsg
       );
       console.log(employeeID, "employee id that is going for the new data");
       console.log(entryIndex, "index that the new data occupies");
@@ -229,6 +240,8 @@ const handleSubmitClick = async (e: SubmitEvent) => {
 
       base64String = originalData.employee[updateIndex].imageSrc;
 
+      let errMsg = "Error while updating employee";
+      let succMsg = "Succesfully updated employee";
       putData(
         updateIndex,
         employeeID,
@@ -240,7 +253,9 @@ const handleSubmitClick = async (e: SubmitEvent) => {
         roleInputVal,
         locInputVal,
         skillInputVal,
-        base64String
+        base64String,
+        errMsg,
+        succMsg
       );
       console.log(employeeID, "id that is going to be updated");
       console.log(updateIndex, "index that is going to be updated");
