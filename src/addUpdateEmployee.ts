@@ -32,6 +32,7 @@ import {
   dataEntrySkillAlert,
   dataEntrySubmit,
   dataEntryForm,
+  dataEntryEmailAlert,
 } from "./constants";
 
 //function to put data to firebase
@@ -176,6 +177,9 @@ const handleSubmitClick = async (e: SubmitEvent) => {
     isErr = true;
     dataEntrySkillAlert.style.display = "block";
   } else dataEntrySkillAlert.style.display = "none";
+  if (!email.checkValidity()) {
+    dataEntryEmailAlert.style.display = "block";
+  } else dataEntryEmailAlert.style.display = "none";
 
   if (dataEntrySubmit.value == "Add") {
     if (!isErr) {
@@ -194,7 +198,6 @@ const handleSubmitClick = async (e: SubmitEvent) => {
           1;
       } else employeeID = 1001;
 
-
       putData(
         entryIndex,
         employeeID,
@@ -208,6 +211,8 @@ const handleSubmitClick = async (e: SubmitEvent) => {
         skillInputVal,
         base64String
       );
+      console.log(employeeID, "employee id that is going for the new data");
+      console.log(entryIndex, "index that the new data occupies");
       dataEntryForm.reset();
       addedSkills.innerHTML = "";
       //   skillNameArr = [];
@@ -237,6 +242,9 @@ const handleSubmitClick = async (e: SubmitEvent) => {
         skillInputVal,
         base64String
       );
+      console.log(employeeID, "id that is going to be updated");
+      console.log(updateIndex, "index that is going to be updated");
+
       overlay.style.display = "none";
       dataEntryModal.style.display = "none";
     }

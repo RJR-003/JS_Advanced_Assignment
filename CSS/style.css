@@ -1,5 +1,21 @@
-* :root {
-    --primary-color: ;
+:root {
+    --primary-color: #f2f2f2;
+    --box-shadow: #00000077;
+    --heading-background: #3D3D46;
+    --text-color: #fff;
+    --text-color-dark: #000;
+    --border-accent: #D7BE0A;
+    --heading-background-light: #555555;
+    --hover-accent: #fff894;
+    --overlay: #00000074;
+    --submit-button: #808080;
+    --secondary-accent: #e84a4a;
+    --warning-accent: #ff0000;
+    --skillbox: #ffff00;
+    --skillbox-hover: #a18f0a;
+    --confirm-button: #888888;
+    --confirm-button-hover: #666666;
+    --delete-button-hover: #aa3333;
 }
 
 */ * {
@@ -7,7 +23,8 @@
 }
 
 body {
-    background-color: #f2f2f2;
+    background-color: var(--primary-color);
+    font-family: 'Manrope', sans-serif;
 
 }
 
@@ -17,11 +34,10 @@ header {
     position: sticky;
     top: 0;
     z-index: 4;
-    /* box-shadow: ; */
 }
 
 header p {
-    color: #fff;
+    color: var(--text-color);
     margin: 0;
 }
 
@@ -52,7 +68,7 @@ header p {
     padding: 10px;
     border-radius: 10px;
     border: none;
-    box-shadow: 1px 1px 10px #00000077;
+    box-shadow: 1px 1px 10px var(--box-shadow);
 
 }
 
@@ -63,19 +79,19 @@ header p {
 }
 
 .filter-section {
-    background-color: #f2f2f2;
+    background-color: var(--primary-color);
     border-radius: 10px;
     margin-top: 65px;
     padding-bottom: 20px;
-    box-shadow: 1px 1px 10px #00000077;
+    box-shadow: 1px 1px 10px var(--box-shadow);
 
 
 }
 
 .filter-section-heading {
     display: flex;
-    background-color: #3D3D46;
-    color: #fff;
+    background-color: var(--heading-background);
+    color: var(--text-color);
     border-radius: 10px 10px 0 0;
     padding: 12px;
     justify-content: space-between;
@@ -85,6 +101,8 @@ header p {
 .filter-section-heading>p {
     margin: 0;
     padding-top: 13px;
+    font-weight: 600;
+
 }
 
 .filter-search {
@@ -97,14 +115,14 @@ header p {
     padding: 10px;
     border-radius: 10px;
     /* border: none; */
-    border: 1px solid #D7BE0A;
+    border: 1px solid var(--border-accent);
     width: 85%;
 }
 
 .filter-search button {
     border: none;
     border-radius: 10px;
-    background-color: rgb(85, 85, 85);
+    background-color: var(--heading-background-light);
     cursor: pointer;
 }
 
@@ -116,21 +134,21 @@ header p {
 }
 
 .skill-element {
-    background-color: #f2f2f2;
+    background-color: var(--primary-color);
     margin: 0 20px;
     padding: 20px;
-    border: 3px solid #D7BE0A;
+    border: 3px solid var(--border-accent);
     border-radius: 10px;
-    box-shadow: 1px 1px 10px #00000010;
+    box-shadow: 1px 1px 10px var(--box-shadow);
 }
 
 .skill-element:hover {
-    background-color: #fff894;
+    background-color: var(--hover-accent);
 }
 
 .skill-element label {
     margin-left: 25px;
-    color: #000;
+    color: var(--text-color-dark);
 }
 
 .skill-element input[type="checkbox"] {
@@ -149,7 +167,7 @@ header p {
 }
 
 .table-container>button {
-    background-color: #fff;
+    background-color: var(--text-color);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -165,23 +183,23 @@ header p {
 
 table {
     width: 100%;
-    --border: 3px solid #D7BE0A;
+    --border: 3px solid var(--border-accent);
     border-radius: 15px 15px 0 0;
     border-spacing: 0;
     border-collapse: separate;
     border: var(--border);
     overflow: hidden;
-    box-shadow: 1px 1px 10px #000000a3;
+    box-shadow: 1px 1px 10px var(--box-shadow);
 
 }
 
 table th {
-    background-color: #3D3D46;
-    color: #fff;
+    background-color: var(--heading-background);
+    color: var(--text-color);
 }
 
 table tr {
-    background-color: #f2f2f2;
+    background-color: var(--primary-color);
 }
 
 table td,
@@ -219,42 +237,8 @@ table>tfoot:not(:last-child) {
 
 
 
-/* table {
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 1px 1px 10px #00000085;
-
-}
-
-#first-heading {
-    border-top-left-radius: 15px;
-}
-
-#last-heading {
-    border-top-right-radius: 15px;
-}
-
-tr {
-    background-color: #f2f2f2;
-}
-
-td,
-th {
-    border: 3px solid #D7BE0A;
-    text-align: center;
-    vertical-align: center;
-    height: 70px;
-
-
-}
-
-th {
-    background-color: #3D3D46;
-    color: #fff;
-} */
-
 tr:hover {
-    background-color: #fff894;
+    background-color: var(--hover-accent);
     /* background-color: #f86969; */
     /* background-color: #e84a4a; */
 }
@@ -267,11 +251,6 @@ tr:hover {
     margin: 0 10px;
 }
 
-.pagination-buttons button {
-    border: none;
-    background-color: #E7E3D4;
-    cursor: pointer;
-}
 
 .sort-button {
     cursor: pointer;
@@ -305,7 +284,7 @@ tr:hover {
     height: 100%;
     width: 100%;
     z-index: 1;
-    background-color: #00000074;
+    background-color: var(--overlay);
     backdrop-filter: blur(5px);
 
 }
@@ -321,9 +300,9 @@ tr:hover {
     height: auto;
     padding: 30px;
     z-index: 2;
-    background-color: #fff;
+    background-color: var(--text-color);
     border-radius: 15px;
-    box-shadow: 1px 1px 10px #00000085;
+    box-shadow: 1px 1px 10px var(--box-shadow);
 
 }
 
@@ -348,8 +327,9 @@ tr:hover {
 
 .data-entry-modal form input {
     border-radius: 10px;
-    background-color: #ffffff;
-    border: 1px solid #999;
+    background-color: var(--text-color);
+    border: 1px solid var(--box-shadow);
+    /* border: 1px solid #999; */
     padding: 7px;
     /* border: none; */
 }
@@ -386,7 +366,8 @@ tr:hover {
 }
 
 #data-entry-submit:hover {
-    background-color: grey;
+    background-color: var(--submit-button);
+    color: var(--text-color);
 }
 
 .form-skill {
@@ -397,7 +378,7 @@ tr:hover {
 
 .added-skills {
     padding: 20px;
-    background-color: #e84a4a;
+    background-color: var(--secondary-accent);
     border-radius: 15px;
     width: 300px;
     min-height: 150px;
@@ -408,14 +389,14 @@ tr:hover {
 
 .each-skill-added {
     padding: 10px 20px;
-    background-color: yellow;
+    background-color: var(--skillbox);
     border-radius: 5px;
     align-self: flex-start;
     cursor: pointer;
 }
 
 .each-skill-added:hover {
-    background-color: #a18f0a;
+    background-color: var(--skillbox-hover);
 }
 
 .form-skill select {
@@ -434,7 +415,7 @@ tr:hover {
 .data-view-modal {
     position: fixed;
     /* position: absolute; */
-    max-width: 800px;
+    max-width: max-content;
     /* top: 30%;
     left: 30%; */
     top: 50%;
@@ -444,9 +425,9 @@ tr:hover {
     height: auto;
     padding: 30px;
     z-index: 2;
-    background-color: #fff;
+    background-color: var(--text-color);
     border-radius: 15px;
-    box-shadow: 1px 1px 10px #00000085;
+    box-shadow: 1px 1px 10px var(--box-shadow);
 }
 
 .data-view-modal>figure {
@@ -483,7 +464,7 @@ tr:hover {
 .view-skill-box {
     width: 300px;
     min-height: 150px;
-    background-color: #e84a4a;
+    background-color: var(--secondary-accent);
     border-radius: 15px;
     display: flex;
     padding: 15px;
@@ -494,7 +475,7 @@ tr:hover {
 
 .each-skill-view {
     padding: 10px 20px;
-    background-color: yellow;
+    background-color: var(--skillbox);
     border-radius: 5px;
     align-self: flex-start;
 }
@@ -512,17 +493,17 @@ tr:hover {
     width: 500px;
     height: auto;
     padding: 20px;
-    background-color: #f2f2f2;
+    background-color: var(--primary-color);
     border-radius: 15px;
-    border: 1px solid #000;
-    box-shadow: 1px 1px 10px #00000080;
+    border: 1px solid var(--text-color-dark);
+    box-shadow: 1px 1px 10px var(--box-shadow);
 
 }
 
 .del-conf-msg {
     padding: 20px;
-    background-color: #e84a4a;
-    color: #fff;
+    background-color: var(--secondary-accent);
+    color: var(--text-color);
     border-radius: 15px;
 }
 
@@ -540,25 +521,25 @@ tr:hover {
 }
 
 .confirm-button {
-    background-color: #888888;
+    background-color: var(--confirm-button);
 }
 
 .confirm-button:hover {
-    background-color: #666666;
-    color: #fff;
+    background-color: var(--confirm-button-hover);
+    color: var(--text-color);
 }
 
 .delete-button {
-    background-color: #e84a4a;
-    color: #fff;
+    background-color: var(--secondary-accent);
+    color: var(--text-color);
 }
 
 .delete-button:hover {
-    background-color: #aa3333;
+    background-color: var(--delete-button-hover);
 }
 
 .warning-msg {
-    color: red;
+    color: var(--warning-accent);
     font-size: 12px;
     position: absolute;
     bottom: -30px;
@@ -567,7 +548,7 @@ tr:hover {
 }
 
 .warning-msg-last {
-    color: red;
+    color: var(--warning-accent);
     font-size: 12px;
     position: absolute;
     bottom: 65px;

@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
         integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/style.css">
     <title>HRM_App</title>
 </head>
@@ -57,10 +60,7 @@
 
                 </tbody>
             </table>
-            <div class="pagination-buttons">
-                <button><img src="assets/images/prev-page.svg" alt="image for previous page"></button>
-                <button><img src="assets/images/nxt-page.svg" alt="image for next page"></button>
-            </div>
+
         </div>
 
 
@@ -68,7 +68,7 @@
 
         <div class="data-entry-modal">
             <img class="data-entry-close" src="assets/images/close-button.svg" alt="x" align="right">
-            <form class="data-entry-form">
+            <form class="data-entry-form" novalidate>
                 <div class=" form-entry">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" placeholder="Enter full name">

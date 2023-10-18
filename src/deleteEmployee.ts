@@ -1,4 +1,4 @@
-import { originalData, fetchData, fillentry } from "./script";
+import { originalData, fetchData, fillentry, firebaseData } from "./script";
 import { api, skillList, overlay, dataDelModal } from "./constants";
 const confirmButton = document.querySelector(
   ".confirm-button"
@@ -23,12 +23,19 @@ const delData = (index: number) => {
 
 export const delEmp = (id: number) => {
   let delIndex: number;
-  originalData.employee.forEach((elem, index) => {
-    if (elem.id == id) delIndex = index;
-  });
+  // firebaseData.employee.forEach((elem, index) => {
+  //   if (elem.id == id) delIndex = index;
+  // });
+  for (let step = 0; step < firebaseData.employee.length; step++) {
+    if (firebaseData.employee[step] == null) continue;
+    else if (firebaseData.employee[step].id == id) delIndex = step;
+  }
 
   confirmButton.onclick = () => {
     delData(delIndex);
+    console.log(delIndex, "index that is going to be deleted");
+    console.log(id, "the id that is going to be deleted");
+    console.log(firebaseData, "firebaseData");
     overlay.style.display = "none";
     dataDelModal.style.display = "none";
   };

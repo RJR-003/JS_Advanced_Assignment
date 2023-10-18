@@ -31,8 +31,12 @@ export const viewModal = (id: number) => {
       depView.innerHTML = `${department}`;
       roleView.innerHTML = `${viewObj.role}`;
       locView.innerHTML = `${viewObj.workLocation}`;
-      imgView.setAttribute("src", `${viewObj.imageSrc}`);
-      //   .src = `${viewObj.imageSrc}`;
+      // if (viewObj.imageSrc) {
+      //   imgView.setAttribute("src", `${viewObj.imageSrc}`);
+      // } else {
+      //   console.log("error while loading image");
+      // }
+      // imgView.src = `${viewObj.imageSrc}`;
     }
   });
 

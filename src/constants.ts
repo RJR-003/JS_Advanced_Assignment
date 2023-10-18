@@ -94,3 +94,6 @@ export const dataEntrySubmit = document.querySelector(
 export const dataEntryForm = document.querySelector(
   ".data-entry-form"
 )! as HTMLFormElement;
+export const dataEntryEmailAlert = document.querySelector(
+  ".data-entry-email-alert"
+)! as HTMLDivElement;

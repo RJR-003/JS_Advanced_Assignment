@@ -17,8 +17,6 @@ import {
   dataEntryClose,
   dataEntryModal,
   searchBar,
-  filterSearchBox,
-  clearFilterButton,
   sortButton,
   dataEntryForm,
   dataEntrySubmit,
@@ -27,6 +25,7 @@ import { RenderFilterBox, clearFilter } from "./filterAndSearchFun";
 import { sortFun } from "./SortFun";
 export let actualData: fullData;
 export let originalData: fullData;
+export let firebaseData: fullData;
 export let skillNameArr: string[] = []; //string array
 export let skillName: string[];
 export const changeSkillNameArr = (elem: string[]) => {
@@ -103,6 +102,8 @@ export const fetchData = function (fillentry: Function): void {
   fetch(api + "/.json")
     .then((res) => res.json())
     .then((data) => {
+      // firebaseData = data;
+      firebaseData = structuredClone(data);
       data.employee = data.employee.filter(Boolean);
       originalData = structuredClone(data);
       actualData = data;
@@ -189,7 +190,10 @@ const changeSkillState = (skillId: string) => {
 };
 skillList.addEventListener("click", (e: MouseEvent) => {
   const target = e.target as HTMLElement;
-  if (target.classList.contains("skill-element")) {
+  if (
+    target.classList.contains("skill-element") &&
+    target.tagName !== "INPUT"
+  ) {
     const dataset = target.dataset.skillId as string;
     changeSkillState(dataset);
   }
@@ -200,6 +204,7 @@ skillList.addEventListener("click", (e: MouseEvent) => {
     changeSkillState(dataset);
   }
 });
+
 sortButton.addEventListener("click", sortFun);
 
 searchBar.addEventListener("input", filterTable);
