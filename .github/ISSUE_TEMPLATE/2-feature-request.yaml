@@ -1,10 +1,19 @@
 name: 'Feature Request'
 description: Suggest a new feature
-
+title: "[Feature Request]: "
+labels: ["enhancement"]
+assignees:
+  - RJR-003
 body:
   - type: textarea
     id: description
     attributes:
-      label: Description
+      label: What is the current limitation
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: What is the proposed solution
     validations:
       required: true
