@@ -1,5 +1,9 @@
 name: Bug Report
 description: Report a bug in the app
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - RJR-003
 body:
   - type: dropdown
     id: affected-feats
