@@ -1,0 +1,23 @@
+name: Bug Report
+description: Report a bug in the app
+body:
+  - type: dropdown
+    id: affected-feats
+    attributes:
+      label: Under which feature did you identify the bug?
+      options:
+        - search
+        - filter
+        - add employee
+        - edit employee
+        - delete employee
+        - Don't known / other
+      multiple: true
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true
