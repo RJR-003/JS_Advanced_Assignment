@@ -2,7 +2,7 @@
 
 Please check if your PR fulfills the following requirements:
 
-- [ ] The PR message follows proper guidelines ([bug/feat/refactor]/[initial]/[issue_number(if any)_description_in_lower_snake_case])
+- [ ] The PR message follows proper guidelines ([bug/feat/refactor] [issue_number(if any) description])
 
 ## PR Type
 What kind of change does this PR introduce?
