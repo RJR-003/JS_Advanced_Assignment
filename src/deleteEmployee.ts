@@ -5,12 +5,18 @@ import {
   firebaseData,
   toast,
 } from "./script";
-import { api, skillList, overlay, dataDelModal } from "./constants";
+import { constObj } from "./constants";
+const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
+const overlay = document.querySelector(".overlay")! as HTMLDivElement;
+const dataDelModal = document.querySelector(
+  ".data-del-modal"
+)! as HTMLDivElement;
+
 const confirmButton = document.querySelector(
   ".confirm-button"
 )! as HTMLButtonElement;
 const delData = (index: number) => {
-  fetch(api + "/employee/" + index + ".json", {
+  fetch(constObj.api + "/employee/" + index + ".json", {
     method: "DELETE",
   })
     .then((res) => {
@@ -33,14 +39,14 @@ const delData = (index: number) => {
 
 export const delEmp = (id: number) => {
   let delIndex: number;
-  // firebaseData.employee.forEach((elem, index) => {
-  //   if (elem.id == id) delIndex = index;
-  // });
-  for (let step = 0; step < firebaseData.employee.length; step++) {
-    if (firebaseData.employee[step] == null) continue;
-    else if (firebaseData.employee[step].id == id) delIndex = step;
-  }
-
+  firebaseData.employee.forEach((elem, index) => {
+    if (elem == null) return;
+    else if (elem.id == id) delIndex = index;
+  });
+  // for (let step = 0; step < firebaseData.employee.length; step++) {
+  //   if (firebaseData.employee[step] == null) continue;
+  //   else if (firebaseData.employee[step].id == id) delIndex = step;
+  // }
   confirmButton.onclick = () => {
     delData(delIndex);
     console.log(delIndex, "index that is going to be deleted");

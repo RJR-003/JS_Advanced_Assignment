@@ -1,27 +1,51 @@
 import { handleTableClick } from "./tableActionButton";
 import { employee, fullData } from "./type";
-import {
-  api,
-  overlay,
-  table,
-  dataViewModal,
-  dataDelModal,
-  tableBody,
-  skillList,
-  departmentEntry,
-  roleEntry,
-  skillSelecEntry,
-  dataViewClose,
-  cancelDelButton,
-  addEmployeeButton,
-  dataEntryClose,
-  dataEntryModal,
-  searchBar,
-  sortButton,
-  dataEntryForm,
-  dataEntrySubmit,
-  materialSymbolsOutlined,
-} from "./constants";
+const dataEntrySubmit = document.querySelector(
+  "#data-entry-submit"
+)! as HTMLInputElement;
+const dataEntryForm = document.querySelector(
+  ".data-entry-form"
+)! as HTMLFormElement;
+const materialSymbolsOutlined = document.querySelector(
+  ".material-symbols-outlined "
+)! as HTMLSpanElement;
+
+const sortButton = document.querySelector(".sort-button")! as HTMLImageElement;
+const searchBar = document.querySelector(
+  ".search-input-box"
+)! as HTMLInputElement;
+const departmentEntry = document.querySelector("#dep")! as HTMLLabelElement;
+const roleEntry = document.querySelector("#role")! as HTMLLabelElement;
+const skillSelecEntry = document.querySelector("#skill")! as HTMLLabelElement;
+const dataViewClose = document.querySelector(
+  ".data-view-close"
+)! as HTMLTableElement;
+const cancelDelButton = document.querySelector(
+  ".cancel-del-button"
+)! as HTMLImageElement;
+const addEmployeeButton = document.querySelector(
+  ".add-employee-button"
+)! as HTMLImageElement;
+const dataEntryClose = document.querySelector(
+  ".data-entry-close"
+)! as HTMLImageElement;
+const dataEntryModal = document.querySelector(
+  ".data-entry-modal"
+)! as HTMLDivElement;
+const table = document.querySelector(".table")! as HTMLTableElement;
+
+const overlay = document.querySelector(".overlay")! as HTMLDivElement;
+
+import { constObj } from "./constants";
+const dataViewModal = document.querySelector(
+  ".data-view-modal"
+)! as HTMLDivElement;
+const dataDelModal = document.querySelector(
+  ".data-del-modal"
+)! as HTMLDivElement;
+const tableBody = document.querySelector(".table-body")! as HTMLTableElement;
+const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
+
 import { RenderFilterBox, clearFilter } from "./filterAndSearchFun";
 import { sortFun } from "./SortFun";
 export let actualData: fullData;
@@ -122,7 +146,7 @@ export const fillentry = (obj: fullData) => {
 //fetching data whole data from firebase
 ////////////////////////////////////////////////
 export const fetchData = function (fillentry: Function): void {
-  fetch(api + "/.json")
+  fetch(constObj.api + "/.json")
     .then((res) => res.json())
     .then((data) => {
       // firebaseData = data;

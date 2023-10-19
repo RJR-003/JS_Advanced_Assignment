@@ -6,36 +6,58 @@ import {
   skillNameArr,
   changeSkillNameArr,
   toast,
+  firebaseData,
 } from "./script";
+import { constObj } from "./constants";
 import { updateIndex, idOfEmp } from "./updateEmployee";
 import { skillName } from "./script";
-import {
-  api,
-  dataEntryModal,
-  overlay,
-  name,
-  email,
-  dateOfJoin,
-  dataOfBirth,
-  depInput,
-  roleInput,
-  locInput,
-  skillInput,
-  Fulltable,
-  formSkill,
-  addedSkills,
-  dataEntryNameAlert,
-  dataEntryDojAlert,
-  dataEntryDobAlert,
-  dataEntryRoleAlert,
-  dataEntryDepAlert,
-  dataEntryLocAlert,
-  dataEntrySkillAlert,
-  dataEntrySubmit,
-  dataEntryForm,
-  dataEntryEmailAlert,
-} from "./constants";
 
+const dataEntryModal = document.querySelector(
+  ".data-entry-modal"
+)! as HTMLDivElement;
+const overlay = document.querySelector(".overlay")! as HTMLDivElement;
+const name = document.querySelector("#name")! as HTMLInputElement;
+const email = document.querySelector("#email")! as HTMLInputElement;
+const dateOfJoin = document.querySelector("#doj")! as HTMLInputElement;
+const dataOfBirth = document.querySelector("#dob")! as HTMLInputElement;
+const depInput = document.querySelector("#dep")! as HTMLSelectElement;
+const roleInput = document.querySelector("#role")! as HTMLSelectElement;
+const locInput = document.querySelector("#loc")! as HTMLSelectElement;
+const skillInput = document.querySelector("#skill")! as HTMLSelectElement;
+const Fulltable = document.querySelector(".table")! as HTMLTableElement;
+const formSkill = document.querySelector(".form-skill")! as HTMLDivElement;
+
+const addedSkills = document.querySelector(".added-skills")! as HTMLDivElement;
+const dataEntryNameAlert = document.querySelector(
+  ".data-entry-name-alert"
+)! as HTMLDivElement;
+const dataEntryDojAlert = document.querySelector(
+  ".data-entry-doj-alert "
+)! as HTMLDivElement;
+const dataEntryDobAlert = document.querySelector(
+  ".data-entry-dob-alert"
+)! as HTMLDivElement;
+const dataEntryRoleAlert = document.querySelector(
+  ".data-entry-role-alert"
+)! as HTMLDivElement;
+const dataEntryDepAlert = document.querySelector(
+  ".data-entry-dep-alert"
+)! as HTMLDivElement;
+const dataEntryLocAlert = document.querySelector(
+  ".data-entry-loc-alert"
+)! as HTMLDivElement;
+const dataEntrySkillAlert = document.querySelector(
+  ".data-entry-skill-alert"
+)! as HTMLDivElement;
+const dataEntrySubmit = document.querySelector(
+  "#data-entry-submit"
+)! as HTMLInputElement;
+const dataEntryForm = document.querySelector(
+  ".data-entry-form"
+)! as HTMLFormElement;
+const dataEntryEmailAlert = document.querySelector(
+  ".data-entry-email-alert"
+)! as HTMLDivElement;
 //function to put data to firebase
 const putData = (
   index: number,
@@ -52,7 +74,7 @@ const putData = (
   errMsg: string,
   succMsg: string
 ) => {
-  fetch(api + "/employee/" + index + ".json", {
+  fetch(constObj.api + "/employee/" + index + ".json", {
     method: "PUT",
     body: JSON.stringify({
       dateOfBirth: dob,
@@ -191,8 +213,8 @@ const handleSubmitClick = async (e: SubmitEvent) => {
   if (dataEntrySubmit.value == "Add") {
     if (!isErr) {
       let entryIndex = 0;
-      if (actualData.employee) {
-        actualData.employee.forEach((elem, index) => {
+      if (originalData.employee) {
+        firebaseData.employee.forEach((elem, index) => {
           if (index > entryIndex) entryIndex = index;
         });
         entryIndex = entryIndex + 1;

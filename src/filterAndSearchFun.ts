@@ -1,7 +1,13 @@
 // fetch skill form firebase and display it on the filter skill section
 ///////////////////////////////////////////////////////
 import { actualData, filterTable } from "./script";
-import { skillList, filterSearchBox, clearFilterButton } from "./constants";
+const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
+const filterSearchBox = document.querySelector(
+  ".filter-search-box"
+)! as HTMLInputElement;
+const clearFilterButton = document.querySelector(
+  ".clear-filter-button"
+)! as HTMLImageElement;
 
 export const RenderFilterBox = () => {
   let value = filterSearchBox.value;

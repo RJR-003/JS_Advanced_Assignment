@@ -1,4 +1,10 @@
-import { actualData, originalData, changeSkillName, skillName } from "./script";
+import {
+  actualData,
+  originalData,
+  changeSkillName,
+  skillName,
+  firebaseData,
+} from "./script";
 import { employee } from "./type";
 import { skill } from "./type";
 // export let skillName: string[];
@@ -18,13 +24,20 @@ export const updateEmp = (id: number) => {
   let currObj: employee;
   let department: string;
 
-  actualData.employee.forEach((obj: employee) => {
-    if (obj.id == id) {
+  firebaseData.employee.forEach((obj: employee) => {
+    if (obj == null) return;
+    else if (obj.id == id) {
       currObj = obj;
-      actualData.department.forEach((obj) => {
-        if (currObj.department == obj.departmentID)
+      firebaseData.department.forEach((obj) => {
+        if (obj == null) return null;
+        else if (currObj.department == obj.departmentID)
           department = obj.departmentName;
       });
+      for (let step = 0; step < firebaseData.employee.length; step++) {
+        if (firebaseData.employee[step] == null) continue;
+        else if (firebaseData.employee[step].id == currObj.id)
+          updateIndex = step;
+      }
       name.value = `${currObj.fullName}`;
       email.value = `${currObj.email}`;
       dateOfJoin.value = `${currObj.dateOfBirth}`;
@@ -51,9 +64,21 @@ export const updateEmp = (id: number) => {
         `;
   });
 
-  originalData.employee.forEach((elem, index) => {
-    if (elem.id == currObj.id) updateIndex = index;
-  });
+  // firebaseData.employee.forEach((elem, index) => {
+  //   if (elem == null) {
+  //     console.log("null is found");
+  //     return;
+  //   } else if (elem.id == currObj.id) updateIndex = index;
+  //   else {
+  //     console.log(firebaseData, "firebaseData when finding update Index");
+  //     console.log("error while getting updateIndex");
+  //     console.log(updateIndex, "updateIndex when failed");
+  //   }
+  // });
+  // for(let step=0;step<firebaseData.employee.length;step++){
+  //   if (firebaseData.employee[step] == null) continue;
+  //   else if(firebaseData.employee[step].id == currObj.id) updateIndex=step;
+  // }
 };
 
 export { updateIndex, idOfEmp };

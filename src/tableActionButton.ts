@@ -1,13 +1,19 @@
-import {
-  overlay,
-  dataViewModal,
-  dataDelModal,
-  dataEntryModal,
-} from "./constants";
+const overlay = document.querySelector(".overlay")! as HTMLDivElement;
+const dataViewModal = document.querySelector(
+  ".data-view-modal"
+)! as HTMLDivElement;
+const dataDelModal = document.querySelector(
+  ".data-del-modal"
+)! as HTMLDivElement;
+const dataEntryModal = document.querySelector(
+  ".data-entry-modal"
+)! as HTMLDivElement;
+const dataEntrySubmit = document.querySelector(
+  "#data-entry-submit"
+)! as HTMLInputElement;
 import { updateEmp } from "./updateEmployee";
 import { viewModal } from "./viewEmployee";
 import { delEmp } from "./deleteEmployee";
-import { dataEntrySubmit } from "./constants";
 export const handleTableClick = (e: MouseEvent) => {
   const target = e.target as HTMLTableElement;
   if (target.classList.contains("view-image-icon")) {

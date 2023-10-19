@@ -1,7 +1,11 @@
 import { actualData, tableCreate } from "./script";
 import { FilterArr } from "./script";
-import { tableBody, sortButton } from "./constants";
-
+ const tableBody = document.querySelector(
+  ".table-body"
+)! as HTMLTableElement;
+ const sortButton = document.querySelector(
+  ".sort-button"
+)! as HTMLImageElement;
 let dirFlag = 1;
 
 // sort functionality
