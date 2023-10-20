@@ -23,6 +23,7 @@ export const viewModal = (id: number) => {
         if (viewObj.department == obj.departmentID)
           department = obj.departmentName;
       });
+      imgView.src = `${viewObj.imageSrc}`;
       nameView.innerHTML = `${viewObj.fullName}`;
       emailView.innerHTML = `${viewObj.email}`;
       empIdView.innerHTML = `${viewObj.id}`;

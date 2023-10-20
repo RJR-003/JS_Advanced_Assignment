@@ -20,6 +20,10 @@ const locInput = document.querySelector("#loc")! as HTMLSelectElement;
 const skillInput = document.querySelector("#skill")! as HTMLSelectElement;
 const Fulltable = document.querySelector(".table")! as HTMLTableElement;
 const formSkill = document.querySelector(".form-skill")! as HTMLDivElement;
+const formImg = document.querySelector(
+  ".data-entry-modal-img"
+)! as HTMLImageElement;
+const imgElem = document.querySelector(".profile-input")! as HTMLInputElement;
 
 const addedSkills = document.querySelector(".added-skills")! as HTMLDivElement;
 const dataEntryNameAlert = document.querySelector(
@@ -67,6 +71,23 @@ let putdata: sendData = {
   errMsg: "",
   succMsg: "",
 };
+// image generating function
+///////////////////////////////////////////////////////////
+let base64String1;
+const addImgToForm = async () => {
+  let imgFile1 = imgElem.files?.[0];
+  try {
+    base64String1 = await AppSupportFun.readFileAsBase64(imgFile1!);
+    putdata.img = base64String1;
+  } catch {
+    console.log("error while fetching base64String");
+  }
+  if (imgFile1 == undefined) {
+    base64String1 = "../assets/images/profile.png";
+  }
+};
+imgElem.addEventListener("input", addImgToForm);
+
 //handling the submit button click
 /////////////////////////////////////////////////////////////////////////////////////////////
 const handleSubmitClick = async (e: SubmitEvent) => {
@@ -74,14 +95,18 @@ const handleSubmitClick = async (e: SubmitEvent) => {
   e.preventDefault();
 
   //taking image from user
-  const imgElem = document.querySelector(".profile-input")! as HTMLInputElement;
   const imgFile = imgElem.files?.[0];
+  console.log(imgFile, "image file that is given to upload");
 
   try {
     base64String = await AppSupportFun.readFileAsBase64(imgFile!);
     putdata.img = base64String; //data to be sent to putData function
   } catch (err) {
     console.log("error while fetching base64String");
+  }
+
+  if (imgFile == undefined) {
+    base64String = "../assets/images/profile.png";
   }
 
   putdata.name = name.value;
@@ -92,6 +117,7 @@ const handleSubmitClick = async (e: SubmitEvent) => {
   putdata.role = roleInput.value;
   putdata.loc = locInput.value;
   putdata.skill = AppSupportFun.returnSkillArr(skillNameArr, actualData);
+  putdata.img = base64String;
 
   let isErr = false;
   if (putdata.name.length < 2) {
@@ -164,11 +190,14 @@ const handleSubmitClick = async (e: SubmitEvent) => {
       let employeeID = idOfEmp;
       putdata.id = employeeID;
       base64String = originalData.employee[updateIndex].imageSrc;
-      putdata.img = base64String;
+
       putdata.errMsg = appStrings.updateErrMsg;
       putdata.succMsg = appStrings.updateSuccessMsg;
       putdata.index = updateIndex;
       //passing data to update employee
+
+      console.log(updateIndex, "index to be updated");
+      console.log(putdata.img, "image that is going to be updated");
       hrmApp.putData(putdata, fillentry, toast);
 
       overlay.style.display = "none";

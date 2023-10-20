@@ -33,6 +33,9 @@ const dataEntryClose = document.querySelector(
 const dataEntryModal = document.querySelector(
   ".data-entry-modal"
 )! as HTMLDivElement;
+const formImg = document.querySelector(
+  ".data-entry-modal-img"
+)! as HTMLImageElement;
 const table = document.querySelector(".table")! as HTMLTableElement;
 
 const overlay = document.querySelector(".overlay")! as HTMLDivElement;
@@ -49,7 +52,7 @@ const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
 
 import { RenderFilterBox, clearFilter } from "./filterAndSearchFun";
 import { sortFun } from "./SortFun";
-import { originalData,actualData } from "./DataService";
+import { originalData, actualData } from "./DataService";
 export let firebaseData: dataBaseData;
 export let skillNameArr: string[] = []; //string array
 export let skillName: string[];
@@ -172,6 +175,7 @@ cancelDelButton.addEventListener("click", () => {
 addEmployeeButton.addEventListener("click", () => {
   dataEntryForm.reset();
   changeSkillNameArr([]);
+  formImg.src = "../assets/images/profile.png";
   addedSkills.innerHTML = "";
   dataEntrySubmit.value = "Add";
   overlay.style.display = "block";

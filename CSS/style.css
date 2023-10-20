@@ -620,3 +620,21 @@ tr:hover {
 
     color: var(--text-color);
 }
+
+.img {
+    width: 140px;
+    height: 150px;
+}
+
+.data-entry-modal-img {
+    width: 150px;
+    height: 170px
+}
+
+.data-entry-modal-figure {
+    border-radius: 20px;
+    padding: 0;
+    margin: 0;
+    width: max-content;
+
+}
