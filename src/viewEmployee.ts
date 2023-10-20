@@ -1,5 +1,5 @@
-import { actualData } from "./script";
 import { employee } from "./type";
+import { actualData } from "./DataService";
 const nameView = document.querySelector("#nameView")! as HTMLParagraphElement;
 const emailView = document.querySelector("#emailView")! as HTMLParagraphElement;
 const empIdView = document.querySelector("#empIdView")! as HTMLParagraphElement;

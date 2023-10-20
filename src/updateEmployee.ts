@@ -1,6 +1,7 @@
-import { actualData, changeSkillName, skillName, firebaseData } from "./script";
+import { changeSkillName, skillName } from "./script";
 import { employee } from "./type";
 import { skill } from "./type";
+import { actualData, firebaseData } from "./DataService";
 // export let skillName: string[];
 const name = document.querySelector("#name")! as HTMLInputElement;
 const email = document.querySelector("#email")! as HTMLInputElement;

@@ -1,6 +1,7 @@
 // fetch skill form firebase and display it on the filter skill section
 ///////////////////////////////////////////////////////
-import { actualData, filterTable } from "./script";
+import {  filterTable } from "./script";
+import { actualData } from "./DataService";
 const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
 const filterSearchBox = document.querySelector(
   ".filter-search-box"

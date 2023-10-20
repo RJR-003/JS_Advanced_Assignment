@@ -1,11 +1,8 @@
-import { actualData, tableCreate } from "./script";
+import { tableCreate } from "./script";
+import { actualData } from "./DataService";
 import { FilterArr } from "./script";
- const tableBody = document.querySelector(
-  ".table-body"
-)! as HTMLTableElement;
- const sortButton = document.querySelector(
-  ".sort-button"
-)! as HTMLImageElement;
+const tableBody = document.querySelector(".table-body")! as HTMLTableElement;
+const sortButton = document.querySelector(".sort-button")! as HTMLImageElement;
 let dirFlag = 1;
 
 // sort functionality

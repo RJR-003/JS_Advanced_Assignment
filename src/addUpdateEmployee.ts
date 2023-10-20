@@ -1,17 +1,10 @@
-import {
-  actualData,
-  fillentry,
-  originalData,
-  skillNameArr,
-  changeSkillNameArr,
-  toast,
-} from "./script";
+import { fillentry, skillNameArr, changeSkillNameArr, toast } from "./script";
 import { AppSupportFun } from "./AppSupportFunction";
 import { appStrings } from "./constants";
 import { updateIndex, idOfEmp } from "./updateEmployee";
 import { skillName } from "./script";
 import { sendData } from "./type";
-import { hrmApp, firebaseData } from "./DataService";
+import { hrmApp, firebaseData, originalData, actualData } from "./DataService";
 
 const dataEntryModal = document.querySelector(
   ".data-entry-modal"
