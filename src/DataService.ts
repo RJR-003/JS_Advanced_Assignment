@@ -1,13 +1,14 @@
 import { dataBaseData, sendData } from "./type";
 import { appStrings } from "./constants";
 const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
-
+import { appConstants } from "./constants";
 export let firebaseData: dataBaseData;
-
+export let originalData: dataBaseData;
+export let actualData: dataBaseData;
 class FirebaseSingleton {
   private static instance: FirebaseSingleton;
-  private readonly databaseUrl: string =
-    "https://hrm-app-39bd9-default-rtdb.asia-southeast1.firebasedatabase.app";
+  // private readonly databaseUrl: string =
+  //   "https://hrm-app-39bd9-default-rtdb.asia-southeast1.firebasedatabase.app";
 
   public static getInstance(): FirebaseSingleton {
     if (!FirebaseSingleton.instance) {
@@ -18,12 +19,14 @@ class FirebaseSingleton {
 
   // Read items from firebase database
   public async fetchData(fillentry: Function): Promise<any[]> {
-    const response = await fetch(`${this.databaseUrl}/.json`);
+    const response = await fetch(`${appConstants.databaseUrl}/.json`);
 
     if (response.ok) {
       const data = await response.json();
       firebaseData = structuredClone(data);
       data.employee = data.employee.filter(Boolean);
+      originalData = structuredClone(data);
+      actualData = data;
       fillentry(data);
       return data ? data : [];
     } else {
@@ -36,9 +39,12 @@ class FirebaseSingleton {
     fillentry: Function,
     toast: Function
   ): Promise<void> {
-    const response = await fetch(`${this.databaseUrl}/employee/${index}.json`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `${appConstants.databaseUrl}/employee/${index}.json`,
+      {
+        method: "DELETE",
+      }
+    );
 
     if (!response.ok) {
       console.error("Error in deleting employee");
@@ -56,7 +62,7 @@ class FirebaseSingleton {
     toast: Function
   ): Promise<void> {
     const response = await fetch(
-      `${this.databaseUrl}/employee/${obj.index}.json`,
+      `${appConstants.databaseUrl}/employee/${obj.index}.json`,
       {
         method: "PUT",
         body: JSON.stringify({

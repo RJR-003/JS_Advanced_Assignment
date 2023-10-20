@@ -1,6 +1,7 @@
 // AppConstants
 export const appConstants = {
-  api: "https://hrm-app-39bd9-default-rtdb.asia-southeast1.firebasedatabase.app",
+  databaseUrl:
+    "https://hrm-app-39bd9-default-rtdb.asia-southeast1.firebasedatabase.app",
 } as const;
 
 // AppStrings

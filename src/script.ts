@@ -49,8 +49,7 @@ const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
 
 import { RenderFilterBox, clearFilter } from "./filterAndSearchFun";
 import { sortFun } from "./SortFun";
-export let actualData: dataBaseData;
-export let originalData: dataBaseData;
+import { originalData,actualData } from "./DataService";
 export let firebaseData: dataBaseData;
 export let skillNameArr: string[] = []; //string array
 export let skillName: string[];
@@ -92,7 +91,7 @@ export const toast = (type: boolean, msg: string) => {
 export const tableCreate = (arr: employee[]) => {
   arr.forEach((objelem) => {
     let dep: string =
-      actualData.department[objelem.department - 1].departmentName;
+      originalData.department[objelem.department - 1].departmentName;
     tableBody.innerHTML += `
     <tr class="data-row">
         <td>${objelem.id}</td>
