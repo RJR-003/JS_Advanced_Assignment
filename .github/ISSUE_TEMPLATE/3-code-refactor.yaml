@@ -1,0 +1,31 @@
+name: "Code/style Refactor Request"
+description: Refactor and code cleanup
+title: "[Refactor]: "
+labels: ["refactor"]
+body:
+  - type: dropdown
+    id: ref-type-dd
+    attributes:
+      label: Refactor Type
+      options:
+        - Refactor for Performance Optimization
+        - Refactor for Security
+        - Refactor for Maintainability
+        - Refactor for Readability
+        - Other (Please Specify)
+      multiple: false
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the specific code or code segment that needs refactoring and why. 
+      description: Be as detailed as possible to convey the purpose and impact of the requested changes.
+    validations:
+      required: true
+  - type: textarea
+    id: refactor_reason
+    attributes:
+      label: Explain the reason for this refactor request. What issues or problems are currently being faced due to the existing code?. 
+    validations:
+      required: true
