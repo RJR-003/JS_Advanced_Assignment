@@ -1,5 +1,6 @@
 import { handleTableClick } from "./tableActionButton";
-import { employee, fullData } from "./type";
+import { dataBaseData, employee } from "./type";
+import { hrmApp } from "./DataService";
 const dataEntrySubmit = document.querySelector(
   "#data-entry-submit"
 )! as HTMLInputElement;
@@ -36,7 +37,7 @@ const table = document.querySelector(".table")! as HTMLTableElement;
 
 const overlay = document.querySelector(".overlay")! as HTMLDivElement;
 
-import { constObj } from "./constants";
+import { appConstants } from "./constants";
 const dataViewModal = document.querySelector(
   ".data-view-modal"
 )! as HTMLDivElement;
@@ -48,9 +49,9 @@ const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
 
 import { RenderFilterBox, clearFilter } from "./filterAndSearchFun";
 import { sortFun } from "./SortFun";
-export let actualData: fullData;
-export let originalData: fullData;
-export let firebaseData: fullData;
+export let actualData: dataBaseData;
+export let originalData: dataBaseData;
+export let firebaseData: dataBaseData;
 export let skillNameArr: string[] = []; //string array
 export let skillName: string[];
 export const changeSkillNameArr = (elem: string[]) => {
@@ -113,7 +114,8 @@ export const tableCreate = (arr: employee[]) => {
 
 // fetching data from firebase and display it into the table
 ///////////////////////////////////////////
-export const fillentry = (obj: fullData) => {
+export const fillentry = (obj: dataBaseData) => {
+  tableBody.innerHTML = "";
   tableCreate(obj.employee);
 
   // filter skill button script
@@ -145,22 +147,12 @@ export const fillentry = (obj: fullData) => {
 
 //fetching data whole data from firebase
 ////////////////////////////////////////////////
-export const fetchData = function (fillentry: Function): void {
-  fetch(constObj.api + "/.json")
-    .then((res) => res.json())
-    .then((data) => {
-      // firebaseData = data;
-      firebaseData = structuredClone(data);
-      data.employee = data.employee.filter(Boolean);
-      originalData = structuredClone(data);
-      actualData = data;
-      fillentry(data);
-      sortFun();
-    })
-    .catch((err) => console.log(err, "error"));
-};
 
-fetchData(fillentry);
+hrmApp.fetchData(fillentry).then((data) => {
+  console.log(data);
+  sortFun();
+});
+
 table.addEventListener("click", handleTableClick);
 
 //close data-view-modal
@@ -180,6 +172,7 @@ cancelDelButton.addEventListener("click", () => {
 
 addEmployeeButton.addEventListener("click", () => {
   dataEntryForm.reset();
+  changeSkillNameArr([]);
   addedSkills.innerHTML = "";
   dataEntrySubmit.value = "Add";
   overlay.style.display = "block";
@@ -248,7 +241,7 @@ skillList.addEventListener("click", (e: MouseEvent) => {
   if (target.tagName === "INPUT" || target.tagName === "LABEL") {
     const targetClosest = target.closest("div")! as HTMLDivElement;
     const dataset = targetClosest.dataset.skillId as string;
-    changeSkillState(dataset);
+    filterTable();
   }
 });
 
