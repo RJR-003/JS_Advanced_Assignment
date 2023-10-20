@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
         integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="CSS/style.css">
     <title>HRM_App</title>
 </head>
@@ -20,7 +25,7 @@
     <div class="main-container">
         <div class="side-content">
             <form class="search-box">
-                <input type="text" placeholder="Search Employee">
+                <input class="search-input-box" type="text" placeholder="Search by Name...">
                 <img src="assets/images/search-logo.svg" alt="search icon">
             </form>
             <div class="filter-section">
@@ -30,180 +35,205 @@
                 </div>
                 <div class="filter-search">
                     <form>
-                        <input type="text" placeholder="Search Skill">
+                        <input class="filter-search-box" type="text" placeholder="Search Skill">
                     </form>
-                    <button> <img src="assets/images/clear-filter.svg" alt="logo for the button to clear all filters">
+                    <button> <img class="clear-filter-button" src="assets/images/clear-filter.svg"
+                            alt="logo for the button to clear all filters">
                     </button>
                 </div>
-                <div class="skill-list">
-                    <div class="skill-element">
-                        <input type="checkbox" id="skill1">
-                        <label for="skill1"> Skill1</label><br>
-                    </div>
-                    <div class="skill-element">
-                        <input type="checkbox" id="skill2">
-                        <label for="skill2"> Skill 1</label><br>
-                    </div>
-                    <div class="skill-element">
-                        <input type="checkbox" id="skill3">
-                        <label for="skill3"> Skill 2</label><br>
-                    </div>
-                    <div class="skill-element">
-                        <input type="checkbox" id="skill4">
-                        <label for="skill4"> Skill 3</label><br>
-                    </div>
-                </div>
+                <div class="skill-list"></div>
             </div>
         </div>
         <div class="table-container">
-            <button><img src="assets/images/add-employee.svg" alt="button for adding new employee"></button>
+            <button class="add-employee-button"><img src="assets/images/add-employee.svg"
+                    alt="button for adding new employee"></button>
             <table class="table">
-                <tr class="heading-row">
-                    <th id="first-heading">ID</th>
-                    <th>Name <img class="sort-button" src="assets/images/up-arrow.svg"
-                            alt="arrow indicating sorting direction"></th>
-                    <th>E-mail</th>
-                    <th>Department</th>
-                    <th id="last-heading">Actions</th>
-                </tr>
-                <!-- <tr class="data-row">
-                    <td>1001</td>
-                    <td>Rishi</td>
-                    <td>rishi@qburst.com</td>
-                    <td>Development</td>
-                    <td id="action-button-cell">
-                        <button class="view-image-icon"><img src="assets/images/view-img.svg"
-                                alt="view button image"></button>
-                        <button class="edit-image-icon"><img src="assets/images/edit-img.svg"
-                                alt="Edit button image"></button>
-                        <button class="del-image-icon"><img src="assets/images/del-img.svg"
-                                alt="Delete button image"></button>
-                    </td>
-                </tr>
-                <tr class="data-row">
-                    <td>1002</td>
-                    <td>Bob</td>
-                    <td>bob@qburst.com</td>
-                    <td>Development</td>
-                    <td id="action-button-cell">
-                        <button><img src="assets/images/view-img.svg" alt="view button image"></button>
-                        <button><img src="assets/images/edit-img.svg" alt="Edit button image"></button>
-                        <button><img src="assets/images/del-img.svg" alt="Delete button image"></button>
-                    </td>
-                </tr>
-                <tr class="data-row">
-                    <td>1003</td>
-                    <td>Billy</td>
-                    <td>billy@qburst.com</td>
-                    <td>Development</td>
-                    <td id="action-button-cell">
-                        <button><img src="assets/images/view-img.svg" alt="view button image"></button>
-                        <button><img src="assets/images/edit-img.svg" alt="Edit button image"></button>
-                        <button><img src="assets/images/del-img.svg" alt="Delete button image"></button>
-                    </td>
-                </tr>
-                <tr class="data-row">
-                    <td>1004</td>
-                    <td>John</td>
-                    <td>john@qburst.com</td>
-                    <td>Development</td>
-                    <td id="action-button-cell">
-                        <button><img src="assets/images/view-img.svg" alt="view button image"></button>
-                        <button><img src="assets/images/edit-img.svg" alt="Edit button image"></button>
-                        <button><img src="assets/images/del-img.svg" alt="Delete button image"></button>
-                    </td>
-                </tr> -->
+                <thead>
+                    <tr class="heading-row">
+                        <th id="first-heading">ID</th>
+                        <th>Name <img class="sort-button" src="assets/images/up-arrow.svg"
+                                alt="arrow indicating sorting direction"></th>
+                        <th>E-mail</th>
+                        <th>Department</th>
+                        <th id="last-heading">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+
+                </tbody>
             </table>
-            <div class="pagination-buttons">
-                <button><img src="assets/images/prev-page.svg" alt="image for previous page"></button>
-                <button><img src="assets/images/nxt-page.svg" alt="image for next page"></button>
+
+        </div>
+
+
+
+
+        <div class="data-entry-modal">
+            <img class="data-entry-close" src="assets/images/close-button.svg" alt="x" align="right">
+            <form class="data-entry-form" novalidate>
+                <div class=" form-entry">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter full name">
+                    <p class="warning-msg data-entry-name-alert">More than 2 letters required</p>
+                </div>
+                <div class=" form-entry">
+                    <label for="email">E-Mail</label>
+                    <input type="email" id="email" placeholder="Enter E-mail" required>
+                    <p class="warning-msg data-entry-email-alert">enter a valid email</p>
+                </div>
+                <div class="entry-form-row">
+                    <div class="form-entry">
+                        <label for="doj">Date of Join</label>
+                        <input type="date" id="doj">
+                        <p class="warning-msg data-entry-doj-alert">Choose a date</p>
+                    </div>
+                    <div class="form-entry">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob">
+                        <p class="warning-msg data-entry-dob-alert">Choose a date</p>
+                    </div>
+
+                </div>
+                <div class="entry-form-row">
+                    <div class="form-entry">
+                        <label for="dep">Department</label>
+                        <select id="dep">
+
+
+                        </select>
+                        <p class="warning-msg data-entry-dep-alert">select a department</p>
+                    </div>
+                    <div class="form-entry">
+                        <label for="role">Role</label>
+                        <select id="role">
+
+
+                        </select>
+                        <p class="warning-msg data-entry-role-alert">select a role</p>
+                    </div>
+                </div>
+                <div class="form-location-profile">
+
+                    <div class="form-entry">
+                        <label for="profile">Profile upload</label>
+                        <input class="profile-input" type="file" id="profile" name="filename" accept="image/*">
+                    </div>
+                    <div class="form-entry">
+                        <label for="loc">location</label>
+                        <select id="loc">
+
+                            <option value="none" selected disabled hidden>select</option>
+                            <option value="Trivandrum">Trivandrum</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Bangalore">Bangalore</option>
+                        </select>
+                        <p class="warning-msg data-entry-loc-alert">select a location</p>
+                    </div>
+                </div>
+                <div class="form-skill">
+                    <div>
+                        <p>Skills</p>
+                        <div class="added-skills">
+                            <!-- <div class="each-skill-added">
+                                Skill 1
+                            </div>
+                            <div class="each-skill-added">
+                                Skill 1
+                            </div> -->
+                        </div>
+                    </div>
+                    <select name="skill" id="skill">
+
+                    </select>
+                    <p class="warning-msg-last data-entry-skill-alert">choose atleast one</p>
+
+                </div>
+                <input id="data-entry-submit" type="submit" value="Add">
+
+            </form>
+        </div>
+
+        <div class="data-view-modal">
+            <img class="data-view-close" src="assets/images/close-button.svg" alt="x" align="right">
+            <figure><img class="img" src="assets/images/profile.png" alt="profile-pic"></figure>
+            <div class="data-view-content">
+                <div class="left-view-content">
+                    <div>
+                        <p class="view-labels">Employee ID:</p>
+                        <p class="view-labels">Name: </p>
+                        <p class="view-labels">E-mail: </p>
+                        <p class="view-labels">Date Of Join: </p>
+                        <p class="view-labels">Date of Birth: </p>
+                    </div>
+                    <div>
+                        <p id="empIdView"></p>
+                        <p id="nameView"></p>
+                        <p id="emailView"></p>
+                        <p id="dojView"></p>
+                        <p id="dobView"></p>
+                    </div>
+
+                </div>
+                <div class="right-view-content">
+                    <div class="right-content">
+                        <div>
+                            <p class="view-labels">Department:</p>
+                            <p class="view-labels">Role: </p>
+                            <p class="view-labels">Location: </p>
+                        </div>
+                        <div>
+                            <p id="depView"></p>
+                            <p id="roleView"></p>
+                            <p id="locView"></p>
+                        </div>
+                    </div>
+                    <div class="view-skill-sec">
+                        <p class="view-labels">Skills</p>
+                        <div class="view-skill-box">
+                            <!-- <div class="each-skill-view">Sample</div> -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
+
+        <div class="data-del-modal">
+            <div class="del-conf-msg">
+                <p>Are you sure you want to proceed with the action?</p>
+            </div>
+            <div class="del-conf-buttons">
+                <button class="confirm-button">Confirm</button>
+                <button class="cancel-del-button">Cancel</button>
+            </div>
+
+        </div>
+
+
     </div>
 
 
 
+    <div class="overlay"></div>
 
-
-
-    <div class="data-entry-modal">
-        <form>
-            <div class=" form-entry">
-                <label for="name">Full Name</label>
-                <input type="text" id="name">
-            </div>
-            <div class=" form-entry">
-                <label for="email">E-Mail</label>
-                <input type="text" id="email">
-            </div>
-            <div class="entry-form-row">
-                <div class="form-entry">
-                    <label for="doj">Date of Join</label>
-                    <input type="date" id="doj">
-                </div>
-                <div class="form-entry">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" id="doj">
-                </div>
-
-            </div>
-            <div class="entry-form-row">
-                <div class="form-entry">
-                    <label for="dep">Department</label>
-                    <select id="dep">
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                    </select>
-                </div>
-                <div class="form-entry">
-                    <label for="role">Role</label>
-                    <select id="role">
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                    </select>
-                </div>
-            </div>
-            <div class="entry-form-row">
-                <div class="form-entry">
-                    <label for="loc">location</label>
-                    <select id="loc">
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                        <option value="sample">sample</option>
-                    </select>
-                </div>
-                <div class="form-entry">
-                    <label for="profile">Profile upload</label>
-                    <input type="file" id="myFile" name="filename">
-                </div>
-                <input type="submit" value="submit">
-            </div>
-            <div class="form-skill">
-                <div>
-                    <p>Skills</p>
-                    <div class="added-skills">
-
-                    </div>
-                </div>
-                <select name="skill" id="skill">
-                    <option value="skill1">Skill 1</option>
-                    <option value="skill2">Skill 2</option>
-                </select>
-
-            </div>
-            <input id="data-entry-submit" type="submit" value="Add">
-
-        </form>
+    <div class="toast">
+        <span class="material-symbols-outlined">
+            done
+        </span>
+        <p class="toast-msg">Successfully added new employee</p>
     </div>
 
 
-    <script src="src/script.js"></script>
+    <script type="module" src="dist/bundle.js"></script>
 </body>
 
 </html>
+
+<!-- 
+<span class="material-symbols-outlined">
+    error
+</span>
+<span class="material-symbols-outlined">
+    done
+    </span> -->
