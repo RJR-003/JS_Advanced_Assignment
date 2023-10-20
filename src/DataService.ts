@@ -7,8 +7,6 @@ export let originalData: dataBaseData;
 export let actualData: dataBaseData;
 class FirebaseSingleton {
   private static instance: FirebaseSingleton;
-  // private readonly databaseUrl: string =
-  //   "https://hrm-app-39bd9-default-rtdb.asia-southeast1.firebasedatabase.app";
 
   public static getInstance(): FirebaseSingleton {
     if (!FirebaseSingleton.instance) {
