@@ -12,5 +12,5 @@ export const appStrings = {
   updateErrMsg: "Error while updating employee",
   delSuccessMsg: "Succesfully deleted the employee",
   delErrMsg: "Error while deleting employee",
-  fetchErrMsg: "Error while fetching data",
+  fetchErrMsg: "Error while fetching the data",
 } as const;
