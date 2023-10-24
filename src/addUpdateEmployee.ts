@@ -73,17 +73,22 @@ let putdata: sendData = {
 };
 // image generating function
 ///////////////////////////////////////////////////////////
-let base64String1;
+let base64String1: string;
 const addImgToForm = async () => {
   let imgFile1 = imgElem.files?.[0];
   try {
     base64String1 = await AppSupportFun.readFileAsBase64(imgFile1!);
     putdata.img = base64String1;
+
+    formImg.src = base64String1;
   } catch {
     console.log("error while fetching base64String");
+    formImg.src = appStrings.defaultPic;
+    putdata.img = appStrings.defaultPic;
   }
   if (imgFile1 == undefined) {
-    base64String1 = "../assets/images/profile.png";
+    base64String1 = appStrings.defaultPic;
+    putdata.img = appStrings.defaultPic;
   }
 };
 imgElem.addEventListener("input", addImgToForm);
@@ -91,24 +96,7 @@ imgElem.addEventListener("input", addImgToForm);
 //handling the submit button click
 /////////////////////////////////////////////////////////////////////////////////////////////
 const handleSubmitClick = async (e: SubmitEvent) => {
-  let base64String!: string;
   e.preventDefault();
-
-  //taking image from user
-  const imgFile = imgElem.files?.[0];
-  console.log(imgFile, "image file that is given to upload");
-
-  try {
-    base64String = await AppSupportFun.readFileAsBase64(imgFile!);
-    putdata.img = base64String; //data to be sent to putData function
-  } catch (err) {
-    console.log("error while fetching base64String");
-  }
-
-  if (imgFile == undefined) {
-    base64String = "../assets/images/profile.png";
-  }
-
   putdata.name = name.value;
   putdata.email = email.value;
   putdata.doj = dateOfJoin.value;
@@ -117,7 +105,6 @@ const handleSubmitClick = async (e: SubmitEvent) => {
   putdata.role = roleInput.value;
   putdata.loc = locInput.value;
   putdata.skill = AppSupportFun.returnSkillArr(skillNameArr, actualData);
-  putdata.img = base64String;
 
   let isErr = false;
   if (putdata.name.length < 2) {
@@ -174,6 +161,7 @@ const handleSubmitClick = async (e: SubmitEvent) => {
       putdata.index = entryIndex;
       putdata.errMsg = appStrings.addErrMsg;
       putdata.succMsg = appStrings.addSuccessMsg;
+
       //passing data to enter new employee details
       hrmApp.putData(putdata, fillentry, toast);
       dataEntryForm.reset();
@@ -189,17 +177,15 @@ const handleSubmitClick = async (e: SubmitEvent) => {
     if (!isErr) {
       let employeeID = idOfEmp;
       putdata.id = employeeID;
-      base64String = originalData.employee[updateIndex].imageSrc;
+      if (base64String1) putdata.img = base64String1;
+      else putdata.img = appStrings.defaultPic;
 
       putdata.errMsg = appStrings.updateErrMsg;
       putdata.succMsg = appStrings.updateSuccessMsg;
       putdata.index = updateIndex;
       //passing data to update employee
 
-      console.log(updateIndex, "index to be updated");
-      console.log(putdata.img, "image that is going to be updated");
       hrmApp.putData(putdata, fillentry, toast);
-
       overlay.style.display = "none";
       dataEntryModal.style.display = "none";
     }
@@ -219,7 +205,15 @@ Fulltable.onclick = (e: MouseEvent) => {
 formSkill.onclick = (e: MouseEvent) => {
   const target = e.target as HTMLElement;
 
-  if (
+  if (target.id == "skill" && !skillNameArr.includes(skillInput.value)) {
+    if (skillInput.value != "none") {
+      skillNameArr.push(skillInput.value);
+      addedSkills.innerHTML += `
+    <div data-rem-id="${skillInput.value}" class="each-skill-added">
+    ${skillInput.value}
+</div>`;
+    }
+  } else if (
     target.classList.contains("skill-options") &&
     !skillNameArr.includes(target.id)
   ) {
@@ -228,8 +222,6 @@ formSkill.onclick = (e: MouseEvent) => {
                   <div data-rem-id="${target.id}" class="each-skill-added">
                   ${target.id}
               </div>`;
-  } else {
-    toast(true, appStrings.updateErrMsg);
   }
 };
 

@@ -1,6 +1,7 @@
 import { handleTableClick } from "./tableActionButton";
 import { dataBaseData, employee } from "./type";
 import { hrmApp } from "./DataService";
+import { appStrings } from "./constants";
 const dataEntrySubmit = document.querySelector(
   "#data-entry-submit"
 )! as HTMLInputElement;
@@ -40,7 +41,6 @@ const table = document.querySelector(".table")! as HTMLTableElement;
 
 const overlay = document.querySelector(".overlay")! as HTMLDivElement;
 
-import { appConstants } from "./constants";
 const dataViewModal = document.querySelector(
   ".data-view-modal"
 )! as HTMLDivElement;
@@ -53,7 +53,6 @@ const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
 import { RenderFilterBox, clearFilter } from "./filterAndSearchFun";
 import { sortFun } from "./SortFun";
 import { originalData, actualData } from "./DataService";
-export let firebaseData: dataBaseData;
 export let skillNameArr: string[] = []; //string array
 export let skillName: string[];
 export const changeSkillNameArr = (elem: string[]) => {
@@ -175,7 +174,7 @@ cancelDelButton.addEventListener("click", () => {
 addEmployeeButton.addEventListener("click", () => {
   dataEntryForm.reset();
   changeSkillNameArr([]);
-  formImg.src = "../assets/images/profile.png";
+  formImg.src = appStrings.defaultPic;
   addedSkills.innerHTML = "";
   dataEntrySubmit.value = "Add";
   overlay.style.display = "block";
