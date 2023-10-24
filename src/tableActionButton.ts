@@ -39,7 +39,6 @@ export const handleTableClick = (e: MouseEvent) => {
     let tryObj = originalData.employee.filter(
       (elem) => elem.id == Number(target.dataset.empId)
     );
-    console.log(tryObj);
     if (tryObj[0].imageSrc) {
       formImg.src = tryObj[0].imageSrc;
     } else {
