@@ -13,4 +13,5 @@ export const appStrings = {
   delSuccessMsg: "Succesfully deleted the employee",
   delErrMsg: "Error while deleting employee",
   fetchErrMsg: "Error while fetching the data",
+  defaultPic: "./assets/images/profile.png",
 } as const;

@@ -1,6 +1,7 @@
 import { handleTableClick } from "./tableActionButton";
 import { dataBaseData, employee } from "./type";
 import { hrmApp } from "./DataService";
+import { appStrings } from "./constants";
 const dataEntrySubmit = document.querySelector(
   "#data-entry-submit"
 )! as HTMLInputElement;
@@ -33,11 +34,13 @@ const dataEntryClose = document.querySelector(
 const dataEntryModal = document.querySelector(
   ".data-entry-modal"
 )! as HTMLDivElement;
+const formImg = document.querySelector(
+  ".data-entry-modal-img"
+)! as HTMLImageElement;
 const table = document.querySelector(".table")! as HTMLTableElement;
 
 const overlay = document.querySelector(".overlay")! as HTMLDivElement;
 
-import { appConstants } from "./constants";
 const dataViewModal = document.querySelector(
   ".data-view-modal"
 )! as HTMLDivElement;
@@ -49,8 +52,7 @@ const skillList = document.querySelector(".skill-list")! as HTMLDivElement;
 
 import { RenderFilterBox, clearFilter } from "./filterAndSearchFun";
 import { sortFun } from "./SortFun";
-import { originalData,actualData } from "./DataService";
-export let firebaseData: dataBaseData;
+import { originalData, actualData } from "./DataService";
 export let skillNameArr: string[] = []; //string array
 export let skillName: string[];
 export const changeSkillNameArr = (elem: string[]) => {
@@ -172,6 +174,7 @@ cancelDelButton.addEventListener("click", () => {
 addEmployeeButton.addEventListener("click", () => {
   dataEntryForm.reset();
   changeSkillNameArr([]);
+  formImg.src = appStrings.defaultPic;
   addedSkills.innerHTML = "";
   dataEntrySubmit.value = "Add";
   overlay.style.display = "block";

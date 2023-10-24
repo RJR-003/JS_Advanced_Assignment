@@ -1,5 +1,5 @@
-import { fillentry, firebaseData, toast } from "./script";
-import { hrmApp } from "./DataService";
+import { fillentry, toast } from "./script";
+import { hrmApp, firebaseData } from "./DataService";
 const overlay = document.querySelector(".overlay")! as HTMLDivElement;
 const dataDelModal = document.querySelector(
   ".data-del-modal"
@@ -18,6 +18,7 @@ export const delEmp = (id: number) => {
 
   confirmButton.onclick = () => {
     hrmApp.deleteData(delIndex, fillentry, toast);
+
     overlay.style.display = "none";
     dataDelModal.style.display = "none";
   };
