@@ -27,10 +27,10 @@ export const sortFun = () => {
   tableBody.innerHTML = "";
   tableCreate(arrToRender);
   if (dirFlag == 1) {
-    sortButton.src = "../assets/images/down-arrow.svg";
+    sortButton.src = "./assets/images/down-arrow.svg";
     dirFlag = -1;
   } else {
     dirFlag = 1;
-    sortButton.src = "../assets/images/up-arrow.svg";
+    sortButton.src = "./assets/images/up-arrow.svg";
   }
 };
